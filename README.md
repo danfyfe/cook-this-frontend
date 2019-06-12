@@ -66,3 +66,14 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+<!--  credit for icons and images-->
+<div>Icons made by <a href="https://www.flaticon.com/authors/becris" title="Becris">Becris</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+<a href="https://www.freepik.com/free-photos-vectors/frame">Frame photo created by valeria_aksakova - www.freepik.com</a>
+<a href="https://www.freepik.com/free-photos-vectors/food">Food vector created by brgfx - www.freepik.com</a>
+<a href="https://www.freepik.com/free-photos-vectors/food">Food photo created by freepik - www.freepik.com</a>
+<a href="https://www.freepik.com/free-photos-vectors/background">Background photo created by freepik - www.freepik.com</a>
+<a href="https://www.freepik.com/free-photos-vectors/food">Food vector created by bimbimkha - www.freepik.com</a>
+<div>Icons made by <a href="https://www.freepik.com/?__hstc=57440181.b5cf965c034f82654fadcd7ef6a1cddc.1560354081009.1560354081009.1560359707364.2&__hssc=57440181.14.1560359707364&__hsfp=2804600594" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>

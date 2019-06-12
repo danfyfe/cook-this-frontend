@@ -37,10 +37,8 @@ export default class App extends React.Component {
       )
     } else if (this.state.page === "login") {
       // LOGIN PAGE
-
     } else if (this.state.page === "signup") {
       // SIGNUP PAGE
-
     }
   }
 }
