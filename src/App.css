@@ -133,6 +133,15 @@ html {
   border-color: black;
 }
 
+.vsc-initialized {
+  all: unset;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
 
 .header{
   position: fixed;
@@ -143,7 +152,6 @@ html {
   top: 0;
   left:0;
 }
-
 
 .footer{
   position: fixed;
@@ -173,5 +181,4 @@ html {
   font-weight: bold;
   font-size: 5vh;
   top: 1vh;
-
 }

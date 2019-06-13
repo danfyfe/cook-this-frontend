@@ -33,13 +33,13 @@ export default class LoginPage extends Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Field>
             <label>Username</label>
-            <input name="username" placeholder="Username" onChange={this.handleChange}/>
+            <input name="username" placeholder="Username" onChange={this.handleChange} />
           </Form.Field>
           <Form.Field>
             <label>Password</label>
             <input name="password" type="password" placeholder="Password" onChange={this.handleChange}/>
           </Form.Field>
-          <Button type="submit">Signup</Button>
+          <Button type="submit">Login</Button>
         </Form>
       </div>
     )
