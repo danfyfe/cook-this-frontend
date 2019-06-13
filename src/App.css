@@ -9,14 +9,33 @@ html {
   height: 100%;
 }
 
+.App{
+  position: relative;
+}
 .App > div {
+  /* margin: 50% auto;
+  width: 50%;
+  border: 3px solid black;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: black;
+  background-color: #B83329;
+  padding: 10px; */
+  /* height: 800px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-attachment: fixed;
+  position: relative; */
+}
+.welcome-div {
   margin: 50% auto;
   width: 50%;
   border: 3px solid black;
   border-style: solid;
   border-radius: 10px;
   border-color: black;
-  background-color: white;
+  background-color: #B83329;
   padding: 10px;
   /* height: 800px;
   margin: 0;
@@ -122,4 +141,44 @@ html {
   content: "";
   clear: both;
   display: table;
+}
+
+.header{
+  position: fixed;
+  border-bottom: black solid;
+  background-color: #B83329;
+  height: 8vh;
+  width: 100%;
+  top: 0;
+  left:0;
+}
+
+.footer{
+  position: fixed;
+  border-top: black solid;
+  background-color: #B83329;
+  height: 8vh;
+  width: 100%;
+  bottom: 0;
+}
+
+.logo{
+  margin: 10px;
+  max-height: 5vh;
+}
+
+.footer-text{
+  margin: 10px;
+  text-align: center;
+  font-family: 'Lobster Two', cursive;
+  font-weight: bold;
+}
+
+.title{
+  position: absolute;
+  font-family: 'Lobster Two', cursive;
+  display: inline;
+  font-weight: bold;
+  font-size: 5vh;
+  top: 1vh;
 }
