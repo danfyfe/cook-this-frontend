@@ -113,3 +113,13 @@ html {
   border-radius: 10px;
   border-color: black;
 }
+
+.vsc-initialized {
+  all: unset;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
