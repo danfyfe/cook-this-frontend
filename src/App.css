@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css?family=Baloo|Bangers|Fredericka+the+Great|Lobster+Two:400i&display=swap');
+
 html {
   background-image: url('/images/backgrounds/drawnFood.jpg');
   background-repeat: no-repeat;
@@ -21,13 +24,12 @@ html {
   text-align: center;
   background-attachment: fixed;
   position: relative; */
-
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.chef-hat{
+  animation: App-logo-spin infinite 2s linear;
+  /* height: 40vmin; */
+  /* pointer-events: none; */
 }
 
 .App-header {
@@ -45,12 +47,48 @@ html {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
+@keyframes App-logo-fall {
   from {
     transform: rotate(0deg);
+    margin:0;
+
   }
   to {
     transform: rotate(360deg);
+    margin: 1000px;
+
+  }
+}
+@keyframes App-logo-spin-reverse {
+  from {
+    transform: rotate(360deg);
+    font-size: 100px;
+
+  }
+  to {
+    transform: rotate(0deg);
+    font-size: 10px;
+
+  }
+}
+
+@keyframes App-logo-spin-switch {
+  0% {
+  font-size: 10px;
+  transform: rotate(200deg);
+  }
+  30% {
+    font-size: 30px;
+    transform: rotate(-90deg)
+  }
+  50%{
+    font-size: 15px;
+    transform: rotate(11deg)
+  }
+  100% {
+    font-size: 100px;
+    transform: rotate(-11deg)
+    /* transform:perspective(); */
   }
 }
 
@@ -63,6 +101,15 @@ html {
   border-radius: 10px;
   border-color: black;
   background-color: white;
-
   margin: 100px auto;
 } */
+
+.cook-this-main{
+  font-family: 'Lobster Two', cursive;
+  margin: 0 auto;
+  width: 100px;
+  background-color: white;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: black;
+}
