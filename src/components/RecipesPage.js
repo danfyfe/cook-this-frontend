@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { Form, Button, Card } from 'semantic-ui-react'
 import RecipeCard from './RecipeCard.js'
+import RecipeCardBig from './RecipeCardBig.js'
 
 export default class RecipesPage extends Component {
   state = {
     recipes: [],
+    selectedRecipe: null, // RECIPE THAT IS SHOW BIG W/ DETAILS
     searchUrl: ""
   }
 
@@ -25,28 +27,47 @@ export default class RecipesPage extends Component {
     fetch("http://localhost:3000/recipes").then(r => r.json()).then(recipes => this.setState({recipes}))
   }
 
+  selectRecipe = e => {
+    const recipeId = parseInt(e.currentTarget.id, 10)
+    const selectedRecipe = this.state.recipes.find(recipe => recipe.id === recipeId)
+    this.setState({selectedRecipe})
+  }
+
+  clearSelectedRecipe = () => this.setState({selectedRecipe: null})
+
   renderRecipeCards = () => {
     return this.state.recipes.map(recipe => {
-      return <RecipeCard recipe={recipe} />
+      return <RecipeCard key={recipe.id} recipe={recipe} handleClick={this.selectRecipe}/>
     })
   }
+
 
   render() {
     console.log("RecipesPage state: ", this.state)
 
+
     return (
       <div style={{margin: "50px auto", width: "90%"}}>
-        <Card.Group itemsPerRow={4} style={{margin: "auto"}}>
-          {this.renderRecipeCards()}
-        </Card.Group>
+        {
+          this.state.selectedRecipe ? (
+            <RecipeCardBig recipe={this.state.selectedRecipe} clearSelectedRecipe={this.clearSelectedRecipe} />
+          ) : (
+            <Card.Group itemsPerRow={4} style={{margin: "auto"}}>
+              {this.renderRecipeCards()}
+            </Card.Group>
+          )
+        }
 
         <br/>
 
         <Form style={{width: "90%"}} onSubmit={this.createRecipe}>
           Add New Recipe
-          <Form.Field onChange={e => this.setState({searchUrl: e.target.value})}>
+          <Form.Field>
             <label>Recipe</label>
-            <input placeholder='Recipe URL' value={this.state.searchUrl}/>
+            <input
+              placeholder='Recipe URL'
+              value={this.state.searchUrl}
+              onChange={e => this.setState({searchUrl: e.target.value})}/>
           </Form.Field>
           <Button type='submit'>Submit</Button>
         </Form>
