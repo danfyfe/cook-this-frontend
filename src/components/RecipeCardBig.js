@@ -10,7 +10,7 @@ export default class RecipeCardBig extends Component {
         <Card style={{height: "100%", width: "100%", textAlign: "center"}}>
           <Grid>
             <Grid.Row centered>
-              <h1>{title}</h1>
+              <h1><u>{title}</u></h1>
             </Grid.Row>
 
             <Grid.Row centered>
@@ -42,10 +42,12 @@ export default class RecipeCardBig extends Component {
               </Grid.Column>
             </Grid.Row>
 
-            <Grid.Row centered>
-              <Button negative
-                onClick={this.props.clearSelectedRecipe}
-              >Back</Button>
+            <Grid.Row>
+              <Grid.Column centered>
+                <Button negative
+                  onClick={this.props.clearSelectedRecipe}
+                >Back</Button>
+              </Grid.Column>
             </Grid.Row>
           </Grid>
         </Card>
