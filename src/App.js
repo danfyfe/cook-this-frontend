@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form, Menu } from 'semantic-ui-react'
 import { Switch, Route } from 'react-router-dom'
 import './App.css';
 import LoginPage from './components/LoginPage'
@@ -39,12 +39,21 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Switch>
-          <Route exact path="/" render={() => <div>Hi welcome home. 🙃</div>}/>
-          <Route path="/login" render={({ history }) => <LoginPage history={history} />}/>
-          <Route path="/signup" render={({ history }) => <SignupPage history={history} />}/>
-          <Route path="/recipes" render={this.recipeForm} />
-        </Switch>
+        <Menu>
+          <Menu.Item header><img className="logo" alt="chef hat" src="/images/chef.png"/>
+          <div className="title">Cook This!</div>
+          </Menu.Item>
+        </Menu>
+          <Switch>
+            <Route exact path="/" render={() => <div className="welcome-div">Hi welcome home. 🙃</div>}/>
+            <Route path="/login" render={({ history }) => <LoginPage history={history} />}/>
+            <Route path="/signup" render={({ history }) => <SignupPage history={history} />}/>
+            <Route path="/recipes" render={this.recipeForm} />
+          </Switch>
+        <Menu style={{bottom: 0}}>
+          <Menu.Item footer> <div className="footer-text">Cook This!</div>
+          </Menu.Item>
+        </Menu>
       </div>
     )
   }
