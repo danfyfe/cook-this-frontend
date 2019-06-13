@@ -12,7 +12,8 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <Menu>
-          <Menu.Item header><img className="logo" alt="chef hat" src="/images/chef.png"/>
+          <Menu.Item header>
+          <img className="logo" alt="chef hat" src="/images/chef.png"/>
           <div className="title">Cook This!</div>
           </Menu.Item>
         </Menu>
