@@ -60,8 +60,9 @@ export default class RecipesPage extends Component {
 
         <br/>
 
-        <Form style={{width: "90%"}} onSubmit={this.createRecipe}>
+        <Form style={{ backgroundColor: "white", border: "2px solid #d2d2d2", borderRadius: "10px", padding: "10px"}} onSubmit={this.createRecipe}>
           Add New Recipe
+          <br/>
           <Form.Field>
             <label>Recipe</label>
             <input
@@ -69,7 +70,7 @@ export default class RecipesPage extends Component {
               value={this.state.searchUrl}
               onChange={e => this.setState({searchUrl: e.target.value})}/>
           </Form.Field>
-          <Button type='submit'>Submit</Button>
+          <Button sytle={{margin: "10px"}}type='submit'>Submit</Button>
         </Form>
       </div>
     )
