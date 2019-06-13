@@ -3,13 +3,17 @@ import { Card } from 'semantic-ui-react'
 
 export default class RecipesCard extends Component {
   render() {
-    const {title, image, description, ready_in_time: cookTime} = this.props.recipe
+    const {id, title, image, description, ready_in_time: cookTime} = this.props.recipe
 
     return (
-      <Card style={{margin: "10px", "text-align": "center"}}>
+      <Card
+        id={id} style={{margin: "7px", textAlign: "center", border: "3px solid black"}}
+        onClick={this.props.handleClick}
+      >
         <div>
           <h4>{title}</h4>
-          <img src={image} height="100px" width="100px"/>
+          <img src={image} alt={title} height="100px" width="100px"/>
+          <p>{cookTime ? cookTime : "Unknown Cook Time"}</p>
           <p>{description.slice(0, 100) + "..."}</p>
         </div>
       </Card>
