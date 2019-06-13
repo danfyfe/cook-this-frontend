@@ -21,14 +21,21 @@ export default class App extends React.Component {
       })
   }
 
+
+
   render() {
     if (this.state.page === "index") {
       // INDEX PAGE
       return (
         <div className="App">
+          <div>
+            <h1 className="cook-this-main">Cook This!</h1>
+            <img className="chef-hat" alt="chef hat"src="/images/chef.png"/>
+          </div>
           <Form onSubmit={this.createRecipe}>
             <Form.Field onChange={e => this.setState({searchUrl: e.target.value})}>
-              <label>Recipe</label>
+              <label>Recipe URL:</label>
+              <br/>
               <input placeholder='Recipe URL' />
             </Form.Field>
             <Button type='submit'>Submit</Button>
