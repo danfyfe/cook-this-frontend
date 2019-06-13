@@ -1,18 +1,29 @@
 
 @import url('https://fonts.googleapis.com/css?family=Baloo|Bangers|Fredericka+the+Great|Lobster+Two:400i&display=swap');
 
+html {
+  background-image: url('/images/backgrounds/drawnFood.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100%;
+}
 
-
-
-.App {
-  height: 800px;
+.App > div {
+  margin: 50% auto;
+  width: 50%;
+  border: 3px solid black;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: black;
+  background-color: white;
+  padding: 10px;
+  /* height: 800px;
   margin: 0;
   padding: 0;
   text-align: center;
-  background-image: url('/images/backgrounds/drawnFood.jpg');
-  background-size:cover;
   background-attachment: fixed;
-  position: relative;
+  position: relative; */
 }
 
 .chef-hat{
@@ -81,7 +92,7 @@
   }
 }
 
-.form{
+/* .form{
   position: absolute;
   top: 25%;
   left: 38%;
@@ -90,8 +101,8 @@
   border-radius: 10px;
   border-color: black;
   background-color: white;
-  /* animation: App-logo-spin-switch infinite 0.5s linear; */
-}
+  margin: 100px auto;
+} */
 
 .cook-this-main{
   font-family: 'Lobster Two', cursive;
@@ -101,8 +112,4 @@
   border-style: solid;
   border-radius: 10px;
   border-color: black;
-  /* animation: App-logo-fall infinite 1s linear; */
 }
-
-
-
