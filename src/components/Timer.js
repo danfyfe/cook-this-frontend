@@ -1,71 +1,76 @@
-import React, { Component } from 'react'
-
+import React from 'react'
+import Countdown from 'react-countdown-now';
 import '../App.css';
 
+class Timer extends React.Component{
+  state={
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    totalMS: 0,
+    timerDone: false
+  }
+
+  timeToMS=()=>{
+    let hoursToSecs = parseInt(this.state.hours) * 3600;
+    let minsToSecs = parseInt(this.state.minutes) * 60;
+    let totalSecs = hoursToSecs + minsToSecs + parseInt(this.state.seconds)
+    let totalMS = totalSecs * 1000
+    return totalMS
+  }
 
 
-class Timer extends Component {
-    constructor(props) {
-        super(props)
-        this.count = this.count.bind(this)
-        this.state = {
-            minutes: 0,
-            hours: 0,
-            secounds: 0,
-            time_up:""
-        }
-        this.x = null
-        this.deadline = null
-    }
-    count () {
-        var now = new Date().getTime();
-        var t = this.deadline - now;
-        var days = Math.floor(t / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((t % (1000 * 60)) / 1000);
-        this.setState({days, minutes, hours, seconds})
-        if (t < 0) {
-                clearInterval(this.x);
-                this.setState({ days: 0, minutes: 0, hours: 0, seconds: 0, time_up: "TIME IS UP" })
-            }
-    }
-    componentDidMount() {
-        this.deadline = new Date("apr 29, 2019 21:00:00").getTime();
+  setStuff = event =>{
+    this.setState({
+      [event.target.name]:event.target.value
+    })
+  }
 
-        this.x = setInterval(this.count, 1000);
-    }
+  setMS = (event)=>{
+    event.preventDefault()
+    this.setState({
+      totalMS: this.timeToMS()
+    })
+  }
 
-    render() {
-        const { seconds, hours, minutes, time_up } = this.state
-        return (
-            <div>
+  resetTimer=()=>{
+    this.setState({
+      timerDone: false
+    })
+  }
 
-            <h1>Countdown Clock</h1>
-            <div id="clockdiv">
+  foodTimer = ()=>{
+    this.setState({
+      timerDone: true
+    })
+  }
 
+  foodDone=()=>{
+    return <h1 className="food-done">The Food Is Done, Probably!</h1>
+  }
 
-            <div>
-                <span className="hours" id="hour">{hours}</span>
-                <div className="smalltext">Hours</div>
+  render(){
+    // console.log(this.state.timerDone)
+    return(
+      <div>
+        <Countdown onComplete={this.foodTimer} date={Date.now()+ this.state.totalMS}>
 
-            </div>
-            <div>
-                <span className="minutes" id="minute">{minutes}</span>
-                <div className="smalltext">Minutes</div>
-
-            </div>
-            <div>
-                <span className="seconds" id="second">{seconds}</span>
-                <div className="smalltext">Seconds</div>
-
-            </div>
-            </div>
-
-            <p id="demo">{time_up}</p>
-            </div>
-        )
-    }
+        </Countdown>
+        {this.state.timerDone ? this.foodDone() : null}
+        <form>
+          <input style={{width:"30px"}}type="text" name="hours" placeholder="hours" onChange={this.setStuff}/>
+          <input style={{width:"30px"}}type="text" name="minutes" placeholder="mins"onChange={this.setStuff}/>
+          <input style={{width:"30px"}}type="text" name="seconds" placeholder="secs"onChange={this.setStuff}/>
+          <br/>
+          <input type="submit" value="Start Timer"onClick={this.setMS}/>
+          <button onClick={this.resetTimer}>Reset Timer</button>
+        </form>
+        </div>
+    )
+  }
 }
+
+
+
 
 export default Timer

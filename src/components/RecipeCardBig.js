@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Timer from './Timer.js'
 import { Button, Card, Grid } from 'semantic-ui-react'
+import Timer from './Timer.js'
 
 
 export default class RecipeCardBig extends Component {
@@ -9,14 +9,15 @@ export default class RecipeCardBig extends Component {
 
     return (
       <div>
-        <Timer/>
         <Card style={{height: "100%", width: "100%", textAlign: "center"}}>
           <Grid>
             <Grid.Row style={{margin:"10px"}} centered>
               <h1>{title}</h1>
 
             </Grid.Row>
-
+            <div style={{margin: "0 auto", padding:"10px", border: "1px solid black"}}>
+              <Timer/>
+            </div>
             <Grid.Row centered>
               <img className="recipe-image"alt ={title} src={image} height="250px" width="250px" />
             </Grid.Row>
