@@ -14,7 +14,7 @@ export default class RecipesCard extends Component {
           <h4>{title}</h4>
           <img className="recipe-image"src={image} alt={title} height="100px" width="100px"/>
           <div className="like-heart">
-          <Icon name = "heart outline"/>
+            <Icon name = "heart outline"/>
           </div>
           <p>{cookTime ? cookTime : "Unknown Cook Time"}</p>
           <p>{description.slice(0, 100) + "..."}</p>
