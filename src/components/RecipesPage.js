@@ -7,7 +7,8 @@ export default class RecipesPage extends Component {
   state = {
     recipes: [],
     selectedRecipe: null, // RECIPE THAT IS SHOW BIG W/ DETAILS
-    searchUrl: ""
+    searchUrl: "",
+    userData: {}
   }
 
   createRecipe = () => {
@@ -25,12 +26,17 @@ export default class RecipesPage extends Component {
 
   componentDidMount() {
     fetch("http://localhost:3000/recipes").then(r => r.json()).then(recipes => this.setState({recipes}))
+
+    fetch("http://localhost:3000/profile", {
+      headers: { Authorization: localStorage.getItem("token") }
+    }).then(r => r.json())
+      .then(userData => this.setState({userData}))
   }
 
   selectRecipe = e => {
     if (e.target.closest(".button")) {
-      
-    } else {
+      this.handleFavBtnClick(e)
+    } else { // IGNORE CLICK ON BUTTON
       const recipeId = parseInt(e.currentTarget.id, 10)
       const selectedRecipe = this.state.recipes.find(recipe => recipe.id === recipeId)
       this.setState({selectedRecipe})
@@ -41,20 +47,64 @@ export default class RecipesPage extends Component {
 
   renderRecipeCards = () => {
     return this.state.recipes.map(recipe => {
-      return <RecipeCard key={recipe.id} recipe={recipe} handleClick={this.selectRecipe}/>
+      const isFavorite = () => {
+        if (this.state.userData.favorites) {
+          return this.state.userData.favorites.includes(recipe.id)
+        } else {
+          return false
+        }
+      }
+
+      return (
+        <RecipeCard
+          isFavorite={isFavorite()}
+          key={recipe.id}
+          recipe={recipe}
+          userData={this.state.userData}
+          handleClick={this.selectRecipe}/>
+      )
     })
   }
 
+  handleFavBtnClick = e => {
+    const recipeId = parseInt(e.target.closest(".card").id, 10)
+
+    if (this.state.userData.favorites.includes(recipeId)) {
+      const userId = parseInt(this.state.userData.user.id, 10)
+
+      fetch(`http://localhost:3000/favorites/${userId}/${recipeId}`, { method: "DELETE" })
+    } else {
+      fetch("http://localhost:3000/favorites", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: this.state.userData.user.id,
+          recipe_id: e.target.closest(".card").id
+        })
+      }).then(r => r.json())
+        .then(favorite => this.setState({
+          userData: {
+            ...this.state.userData,
+            favorites: [
+              ...this.state.userData.favorites,
+              favorite.recipe_id
+            ]
+          }
+        }))
+    }
+  }
 
   render() {
     console.log("RecipesPage state: ", this.state)
-
 
     return (
       <div style={{margin: "50px auto", width: "90%"}}>
         {
           this.state.selectedRecipe ? (
-            <RecipeCardBig recipe={this.state.selectedRecipe} clearSelectedRecipe={this.clearSelectedRecipe} />
+            <RecipeCardBig
+              userData={this.state.userData}
+              recipe={this.state.selectedRecipe}
+              clearSelectedRecipe={this.clearSelectedRecipe} />
           ) : (
             <Fragment>
               <Card.Group itemsPerRow={4} style={{margin: "auto"}}>
