@@ -1,11 +1,18 @@
 import React, { Component } from 'react'
-import { Button, Card, Grid } from 'semantic-ui-react'
+import { Button, Card, Grid, List } from 'semantic-ui-react'
 import Timer from './Timer.js'
 import Note from './Note.js'
-
+import Ingredient from './Ingredient.js'
+import Step from './Step.js'
 
 export default class RecipeCardBig extends Component {
+  state = {
+    timerVisible: false
+  }
+
+
   render() {
+    console.log(this.state)
     const { title, image, description, prep_time: prepTime, cook_time: cookTime, ready_in_time: totalTime, ingredients, steps } = this.props.recipe
 
     return (
@@ -16,11 +23,19 @@ export default class RecipeCardBig extends Component {
             <Grid.Row style={{margin:"10px"}} centered>
               <h1>{title}</h1>
             </Grid.Row>
-            <div style={{margin: "0 auto", padding:"10px", border: "1px solid black"}}>
-              <Timer/>
-            </div>
+
+
             <Grid.Row centered>
               <img className="recipe-image"alt ={title} src={image} height="250px" width="250px" />
+            </Grid.Row>
+
+            <Grid.Row centered>
+              <div style={{margin: "0 auto", padding:"10px", border: "1px solid darkgrey", borderRadius:"10px"}}>
+              {this.state.timerVisible ?  <Timer/>
+               : null }
+
+                <Button onClick={()=>{this.setState({timerVisible: !this.state.timerVisible})}}attached="bottom">Toggle Timer</Button>
+              </div>
             </Grid.Row>
 
             <Grid.Row centered>
@@ -38,13 +53,15 @@ export default class RecipeCardBig extends Component {
             <Grid.Row centered>
               <Grid.Column width={4}>
                 <ul>
-                  {ingredients.map(ingr => <li>{ingr.content}</li>)}
+                  {ingredients.map(ingr => <Ingredient ingredient={ingr}/>)}
                 </ul>
               </Grid.Column>
               <Grid.Column width={8}>
-                <ol>
-                  {steps.map(step => <li>{step.content}</li>)}
-                </ol>
+              <List ordered>
+
+                  {steps.map(step =>  <List.Item><Step step={step}/></List.Item>)}
+
+              </List>
               </Grid.Column>
             </Grid.Row>
 
@@ -53,7 +70,7 @@ export default class RecipeCardBig extends Component {
             <Grid.Row centered>
               <Note/>
             </Grid.Row>
-            
+
             <Grid.Row centered>
               <Button positive
               style={{margin:"20px"}}
