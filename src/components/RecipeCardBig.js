@@ -7,7 +7,8 @@ import Step from './Step.js'
 
 export default class RecipeCardBig extends Component {
   state = {
-    timerVisible: false
+    timerVisible: false,
+    notes: []
   }
 
 
@@ -29,14 +30,7 @@ export default class RecipeCardBig extends Component {
               <img className="recipe-image"alt ={title} src={image} height="250px" width="250px" />
             </Grid.Row>
 
-            <Grid.Row centered>
-              <div style={{margin: "0 auto", padding:"10px", border: "1px solid darkgrey", borderRadius:"10px"}}>
-              {this.state.timerVisible ?  <Timer/>
-               : null }
 
-                <Button onClick={()=>{this.setState({timerVisible: !this.state.timerVisible})}}attached="bottom">Toggle Timer</Button>
-              </div>
-            </Grid.Row>
 
             <Grid.Row centered>
               <Grid.Column width={3} style={{textAlign: "center"}}>{prepTime}</Grid.Column>
@@ -47,7 +41,7 @@ export default class RecipeCardBig extends Component {
             <hr width="70%"/>
 
             <Grid.Row centered>
-              <Grid.Column width={12}>{description}</Grid.Column>
+              {description}
             </Grid.Row>
 
             <Grid.Row centered>
@@ -58,17 +52,25 @@ export default class RecipeCardBig extends Component {
               </Grid.Column>
               <Grid.Column width={8}>
               <List ordered>
-
                   {steps.map(step =>  <List.Item><Step step={step}/></List.Item>)}
-
               </List>
               </Grid.Column>
             </Grid.Row>
 
+            <Grid.Row centered>
+              <div style={{margin: "0 auto", padding:"10px", border: "1px solid darkgrey", borderRadius:"10px"}}>
+              {this.state.timerVisible ?  <Timer/>
+               : null }
+                <Button onClick={()=>{this.setState({timerVisible: !this.state.timerVisible})}}attached="bottom">Toggle Timer</Button>
+              </div>
+            </Grid.Row>
+            
             <hr width="50%"/>
 
             <Grid.Row centered>
-              <Note/>
+              <Grid.Column width={4}>
+                <Note/>
+              </Grid.Column>
             </Grid.Row>
 
             <Grid.Row centered>
