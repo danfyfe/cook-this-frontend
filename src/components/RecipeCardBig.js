@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Card, Grid } from 'semantic-ui-react'
 import Timer from './Timer.js'
+import Note from './Note.js'
 
 
 export default class RecipeCardBig extends Component {
@@ -46,10 +47,24 @@ export default class RecipeCardBig extends Component {
                 </ol>
               </Grid.Column>
             </Grid.Row>
-      
+
+            <hr width="50%"/>
+
+            <Grid.Row centered>
+              <Note/>
+            </Grid.Row>
+            
+            <Grid.Row centered>
+              <Button positive
+              style={{margin:"20px"}}
+              >Add A Note</Button>
+            </Grid.Row>
+
+            <hr width="50%"/>
+
             <Grid.Row>
               <Grid.Column centered>
-                <Button negative 
+                <Button negative
                   style={{margin: "20px"}}
                   onClick={this.props.clearSelectedRecipe}
                 >Back</Button>
