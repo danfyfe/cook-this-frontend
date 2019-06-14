@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Icon } from 'semantic-ui-react'
+import { Card, Icon, Button } from 'semantic-ui-react'
 
 export default class RecipesCard extends Component {
   render() {
@@ -7,18 +7,23 @@ export default class RecipesCard extends Component {
 
     return (
       <Card
-        id={id} style={{margin: "7px", textAlign: "center", border: "1px solid black thin"}}
+        id={id} style={{margin: "7px", textAlign: "center", border: "2px solid #870900", boxShadow: "none"}}
         onClick={this.props.handleClick}
       >
-        <div>
+        <Card.Content>
           <h4>{title}</h4>
+        </Card.Content>
+
+        <Card.Content style={{}}>
           <img className="recipe-image"src={image} alt={title} height="100px" width="100px"/>
-          <div className="like-heart">
-            <Icon name = "heart outline"/>
-          </div>
           <p>{cookTime ? cookTime : "Unknown Cook Time"}</p>
           <p>{description.slice(0, 100) + "..."}</p>
-        </div>
+        </Card.Content>
+
+        <Button
+          attached="bottom"
+          content={<Icon name = "heart outline" />}
+          style={{display: "block", width: "auto", margin: "2px", boxShadow: "none"}}/>
       </Card>
     )
   }

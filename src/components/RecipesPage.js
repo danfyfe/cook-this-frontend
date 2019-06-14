@@ -28,9 +28,13 @@ export default class RecipesPage extends Component {
   }
 
   selectRecipe = e => {
-    const recipeId = parseInt(e.currentTarget.id, 10)
-    const selectedRecipe = this.state.recipes.find(recipe => recipe.id === recipeId)
-    this.setState({selectedRecipe})
+    if (e.target.closest(".button")) {
+      
+    } else {
+      const recipeId = parseInt(e.currentTarget.id, 10)
+      const selectedRecipe = this.state.recipes.find(recipe => recipe.id === recipeId)
+      this.setState({selectedRecipe})
+    }
   }
 
   clearSelectedRecipe = () => this.setState({selectedRecipe: null})
