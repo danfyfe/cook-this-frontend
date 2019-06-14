@@ -1,5 +1,6 @@
 import React from 'react'
 import Countdown from 'react-countdown-now';
+import { Button, Form } from 'semantic-ui-react'
 import '../App.css';
 const TimeFormat = require('hh-mm-ss')
 
@@ -21,7 +22,7 @@ class Timer extends React.Component{
   }
 
 
-  setStuff = event =>{
+  setTimes = event =>{
     this.setState({
       [event.target.name]:event.target.value
     })
@@ -51,22 +52,35 @@ class Timer extends React.Component{
   }
 
   render(){
-    // console.log(this.state.timerDone)
+    console.log(this.state)
     return(
       <div>
-        <Countdown onComplete={this.foodTimer} date={Date.now()+ this.state.totalMS}>
-
+        <Countdown onComplete={this.foodTimer} date={Date.now() + this.state.totalMS}>
         </Countdown>
-        {this.state.timerDone ? this.foodDone() : null}
-        <form>
-          <input style={{width:"30px"}}type="text" name="hours" placeholder="hours" onChange={this.setStuff}/>
-          <input style={{width:"30px"}}type="text" name="minutes" placeholder="mins"onChange={this.setStuff}/>
-          <input style={{width:"30px"}}type="text" name="seconds" placeholder="secs"onChange={this.setStuff}/>
-          <br/>
-          <input type="submit" value="Start Timer"onClick={this.setMS}/>
-          <button onClick={this.resetTimer}>Reset Timer</button>
-        </form>
-        </div>
+
+        <hr width="75%"/>
+
+          {this.state.timerDone ? this.foodDone() : null}
+        <Form>
+            <Form.Field>
+              <input type="text" name="hours" placeholder="hours"
+              onChange={this.setTimes}/>
+            </Form.Field>
+            <Form.Field>
+              <input type="text" name="minutes" placeholder="mins"
+              onChange={this.setTimes}/>
+            </Form.Field>
+            <Form.Field>
+              <input type="text" name="seconds" placeholder="secs"onChange={this.setTimes}/>
+            </Form.Field>
+        </Form>
+
+        <hr width="75%"/>
+
+        <Button onClick={this.setMS}>Start Timer</Button>
+        <Button onClick={this.resetTimer}>Reset Timer</Button>
+        <hr width="75%"/>
+      </div>
     )
   }
 }
