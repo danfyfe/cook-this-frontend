@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
+    "hh-mm-ss": "^1.2.0",
     "react": "^16.8.6",
     "react-countdown-now": "^2.1.0",
     "react-dom": "^16.8.6",

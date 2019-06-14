@@ -1,6 +1,7 @@
 import React from 'react'
 import Countdown from 'react-countdown-now';
 import '../App.css';
+const TimeFormat = require('hh-mm-ss')
 
 class Timer extends React.Component{
   state={
