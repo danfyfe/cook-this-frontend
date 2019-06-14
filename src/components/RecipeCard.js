@@ -2,6 +2,18 @@ import React, { Component } from 'react'
 import { Card, Icon, Button } from 'semantic-ui-react'
 
 export default class RecipesCard extends Component {
+  state = {
+    isFavorite: false
+  }
+
+  // componentDidMount() {
+  //   if (this.props.userData.favorites) {
+  //     if (this.props.userData.favorites.includes(this.props.recipe.id)) {
+  //       this.setState({isFavorite: true})
+  //     }
+  //   }
+  // }
+
   render() {
     const {id, title, image, description, ready_in_time: cookTime} = this.props.recipe
 
@@ -21,8 +33,13 @@ export default class RecipesCard extends Component {
         </Card.Content>
 
         <Button
+          onClick={this.props.handleFavBtnClick}
           attached="bottom"
-          content={<Icon name = "heart outline" />}
+          content={
+            this.props.isFavorite ?
+            <Icon name="heart" style={{color: "red"}} /> :
+            <Icon name="heart outline" />
+          }
           style={{display: "block", width: "auto", margin: "2px", boxShadow: "none"}}/>
       </Card>
     )
