@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo|Bangers|Fredericka+the+Great|Lobster+Two:400i&display=swap');
 
 html {
- background-image: url('/images/backgrounds/drawnFood.jpg');
+ background-image: url('https://previews.dropbox.com/p/thumb/AAdlnZ2hdzPWqXDwNF6H9M1HocEgrMy-KbwuwY9kLdWLz-4CKW0W9ptVSfK0mhm_yGnQ1JjA6EHV0ztMbpoLeuJewwVq8ElIV48tYW47-jynKoxIDQE9mdBKFyDCmu9neCM_SYkMmNLiJXZ0K4-DY-ut39QhGF1MEkLKyFxfHSm_WXqWmmE65hCCAedyds4t2qYtHx0AHXP6EF5oV3yL5ne6MWEJTvBZk5W8b051nlY6VUeM3L8WP2a6apQ4tLKhStao3mKnllP-UGMqqeppv60Bmp9q5tIxkO2xbimXjSJt_kaI4-D34uYvMhougDvrMqf2uEQK0VamudMNU7sXIIWq6YKhDCPMk4YX9IZZVGsMyV4T7PBtPXCOqWhRaMewuFm-JcRubkq6jbfLBSacfMWG/p.jpeg?fv_content=true&size_mode=5');
  background-repeat: no-repeat;
  background-size: cover;
  background-attachment: fixed;
@@ -70,7 +70,7 @@ body {
   display: table;
 }
 
-.header{
+.top{
   /* position: fixed; */
   border-radius: 0 !important;
   border-bottom: black solid;

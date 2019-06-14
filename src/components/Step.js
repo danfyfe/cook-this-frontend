@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import {Checkbox} from 'semantic-ui-react'
 
 export default class Step extends Component {
   state = {
