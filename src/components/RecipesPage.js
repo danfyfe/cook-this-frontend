@@ -73,6 +73,14 @@ export default class RecipesPage extends Component {
       const userId = parseInt(this.state.userData.user.id, 10)
 
       fetch(`http://localhost:3000/favorites/${userId}/${recipeId}`, { method: "DELETE" })
+        .then(r => {
+            const favsCopy = this.state.userData.favorites.filter(favRecipeId => favRecipeId !== recipeId)
+            this.setState({userData: {
+              ...this.state.userData,
+              favorites: favsCopy
+            }})
+          }
+        )
     } else {
       fetch("http://localhost:3000/favorites", {
         method: "POST",
