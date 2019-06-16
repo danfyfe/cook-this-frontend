@@ -1,21 +1,54 @@
-import React, { Component } from 'react'
-import { Button, Card } from 'semantic-ui-react'
+import React, { Component, Fragment } from 'react'
+import { Button, Card, Grid, Form } from 'semantic-ui-react'
 
 
 export default class Note extends Component {
+  // state = {
+  //   editingNote: false
+  // }
+  //
+  // setEditing=()=>{
+  //     this.setState({
+  //       editingNote: !this.state.editingNote
+  //     })
+  // }
+  //
+  //
+  // renderEditForm=()=>{
+  //   return <Form style={{ backgroundColor: "white", border: "2px solid #d2d2d2", borderRadius: "10px", padding: "10px", width:"100%", margin:"0 auto"}}>
+  //
+  //   </Form>
+  // }
+
+
   render(){
+    // console.log(this.state.editingNote)
+
     return(
       <div>
-        <Card>
+        <Card id={this.props.note.id} style={{margin:"20px"}}>
           <Card.Header>
             <h4 style={{padding:"10px"}}>Note: </h4>
           </Card.Header>
 
           <Card.Content>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            {this.props.note.content}
           </Card.Content>
 
-          <Button negative attached="bottom">Delete Note</Button>
+
+          <Grid.Row style={{margin:"10px"}} centered>
+            <Grid.Column width={2} style={{textAlign: "center"}}>
+            {this.props.editingNote ? null :
+              <Fragment>
+                <Button
+                onClick={()=>{this.props.setEditingNote(this.props.note)}}
+                >Edit
+                </Button>
+                <Button onClick={()=>{this.props.handleDeleteNote(this.props.note.id)}} negative >Delete</Button>
+              </Fragment>
+            }
+            </Grid.Column>
+          </Grid.Row>
         </Card>
       </div>
     )

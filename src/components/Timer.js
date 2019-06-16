@@ -2,7 +2,7 @@ import React from 'react'
 import Countdown from 'react-countdown-now';
 import { Button, Form } from 'semantic-ui-react'
 import '../App.css';
-const TimeFormat = require('hh-mm-ss')
+// const TimeFormat = require('hh-mm-ss')
 
 class Timer extends React.Component{
   state={
