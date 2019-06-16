@@ -18,7 +18,6 @@ export default class RecipeCardBig extends Component {
 
   componentDidMount(){
     const recipeId = parseInt(this.props.recipe.id)
-    // const fav = this.props.userData.favorites.find((fav)=>{ return fav.recipe_id === recipeId})
     // console.log("Recipe", recipeId)
     // console.log("Props", this.props)
     // console.log("Fav",fav)
@@ -27,13 +26,9 @@ export default class RecipeCardBig extends Component {
       fetch(`http://localhost:3000/notes/${recipeId}`)
       .then(resp=>resp.json())
       .then(notes=>{
-        // debugger
         // console.log("Notes",notes)
         let favNotes = [...notes]
 
-        // notes.map(note=>{
-          //   return note.favorite_id === fav.id ? favNotes = [...favNotes, note]:null
-          // })
           this.setState({
             notes: favNotes
           })
@@ -58,9 +53,13 @@ export default class RecipeCardBig extends Component {
       // console.log("Added Note",note)
       this.setState({
         notes: [...this.state.notes,note],
-        addingNote: !this.state.addingNote
+        addingNote: !this.state.addingNote,
+        addNoteContent: ""
       })
     })
+  }
+  cancelAdd = ()=>{
+    this.setState({addingNote: !this.state.addingNote})
   }
 
   renderNotes=()=>{
@@ -83,9 +82,12 @@ export default class RecipeCardBig extends Component {
       editNoteContent: note.content
     })
   }
+  cancelEdit=()=>{
+    this.setState({editingNote: !this.state.editingNote})
+  }
+
 
   renderEditForm=()=>{
-
     return <Form style={{ backgroundColor: "white", border: "2px solid #d2d2d2", borderRadius: "10px", padding: "10px", width:"50%", margin:"0 auto"}} onSubmit={this.handleEditNoteClick}>
         <Form.Field>
           <label>Edit Note:</label>
@@ -94,6 +96,7 @@ export default class RecipeCardBig extends Component {
           onChange={e=>this.setState({editNoteContent:e.target.value})}/>
         </Form.Field>
         <Button sytle={{margin: "10px"}}type='submit'>Submit</Button>
+        <Button onClick={this.cancelEdit}sytle={{margin: "10px"}}>Cancel</Button>
       </Form>
   }
 
@@ -155,6 +158,7 @@ export default class RecipeCardBig extends Component {
           onChange={e=>this.setState({addNoteContent:e.target.value})}/>
         </Form.Field>
         <Button sytle={{margin: "10px"}}type='submit'>Submit</Button>
+        <Button onClick={this.cancelAdd}sytle={{margin: "10px"}}>Cancel</Button>
       </Form>
   }
 
@@ -164,12 +168,6 @@ export default class RecipeCardBig extends Component {
     // console.log(this.state.editingNote)
     // console.log(this.props)
     // console.log("NoteFormContent", this.state.addNoteContent)
-    // const recipeId = parseInt(this.props.recipe.id)
-
-    // const favorite = this.props.userData.favorites.find(fav=>{
-    //   return parseInt(fav.recipe_id) === recipeId
-    // })
-
 
     const { id, title, image, description, prep_time: prepTime, cook_time: cookTime, ready_in_time: totalTime, ingredients, steps } = this.props.recipe
 

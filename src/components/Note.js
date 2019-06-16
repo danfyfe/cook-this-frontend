@@ -25,7 +25,7 @@ export default class Note extends Component {
     // console.log(this.state.editingNote)
 
     return(
-      <div>
+      <Fragment>
         <Card id={this.props.note.id} style={{margin:"20px"}}>
           <Card.Header>
             <h4 style={{padding:"10px"}}>Note: </h4>
@@ -50,7 +50,7 @@ export default class Note extends Component {
             </Grid.Column>
           </Grid.Row>
         </Card>
-      </div>
+      </Fragment>
     )
   }
 }
