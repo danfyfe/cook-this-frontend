@@ -11,6 +11,7 @@ export default class HomePage extends Component {
   }
 
   render() {
+    // 🙃
     return (
       <Segment placeholder style={{margin: "50px"}}>
         <Grid columns={2} relaxed='very' stackable>

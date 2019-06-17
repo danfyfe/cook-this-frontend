@@ -2,12 +2,13 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo|Bangers|Fredericka+the+Great|Lobster+Two:400i&display=swap');
 
 html {
- background-image: url('https://previews.dropbox.com/p/thumb/AAdlnZ2hdzPWqXDwNF6H9M1HocEgrMy-KbwuwY9kLdWLz-4CKW0W9ptVSfK0mhm_yGnQ1JjA6EHV0ztMbpoLeuJewwVq8ElIV48tYW47-jynKoxIDQE9mdBKFyDCmu9neCM_SYkMmNLiJXZ0K4-DY-ut39QhGF1MEkLKyFxfHSm_WXqWmmE65hCCAedyds4t2qYtHx0AHXP6EF5oV3yL5ne6MWEJTvBZk5W8b051nlY6VUeM3L8WP2a6apQ4tLKhStao3mKnllP-UGMqqeppv60Bmp9q5tIxkO2xbimXjSJt_kaI4-D34uYvMhougDvrMqf2uEQK0VamudMNU7sXIIWq6YKhDCPMk4YX9IZZVGsMyV4T7PBtPXCOqWhRaMewuFm-JcRubkq6jbfLBSacfMWG/p.jpeg?fv_content=true&size_mode=5');
+  background-image: url('https://lh3.googleusercontent.com/lMyFLdVzeyT4_mfIPiyVfxnyGvH8Tky2wLnbaxdid3NagbXGzihufPWbDrjHeS-dxZtJGT77WVBp1qEBkOOQkBrsMKvdpiZv3GhI9GudH8SopbwWsCN7vGsPwaAZc-i9QdrDYZWCUZrUQD0-9ckgknh84ZQaSSGbwlLPFtabqxLnLgtUGSErJo6xwuANy031vDL6BoKYdyf8EqhkwQlwS1jnHywJUdYdVmSlOr9tYqI-aid0fQhLQ79fxubLhCZlBI0eD6jS5IVBhh6FtuzqefnUqY8Cig7GpRAmsjKEdd4QtdEQIl_RZP_jlohIiHHslY5Ecb91nrhsguv70KxqhD-o8fVeC9hjNzsiMzD9b0v89-PP4bWGPXdDcqi0j-qMdD0lj58xJEVBMjGeP4U5ZrWcew2cAIO5TybH8Vd7cvV6P-kMeOyOP0R8EJxfUih0pYrMP7U6p86iWqe9GSJvwTrvwOkpLeq3QydI4RMYcAOg4c9k9eMHTDucsQZuxbYUYsR0Nbqb7uyc0a5ecQdI4Cf_TqNWc6riIIKPeCLOEUTR33o1Acx8HDe5eD7rTgW8NU9sd380VKTzry2GB4Lgwwt-ZMoqg6bzijnz0fGymvHlxDW6dhd-dnE9OB-Rk9I0etb9NhZtR1e1oQW72Ue9nyl-qNSanFo=w2164-h1530-no');
  background-repeat: no-repeat;
  background-size: cover;
  background-attachment: fixed;
  height: 100%;
 }
+
 
 body{
   background-color: transparent;
