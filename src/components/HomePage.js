@@ -3,10 +3,11 @@ import { Button } from 'semantic-ui-react'
 
 export default class HomePage extends Component {
   render() {
+    // 🙃
     return (
       <div className="home">
         <div className="login-logout clearfix" style={{position: "relative"}}>
-          <div style={{float: "left", margin: "0", position: "absolute", top: "50%", transform: "translateY(-50%)"}}>Hi welcome home. 🙃</div>
+          <div style={{float: "left", margin: "0", position: "absolute", top: "50%", transform: "translateY(-50%)"}}>Hi welcome home. </div>
           {
             localStorage.token ?
             (
