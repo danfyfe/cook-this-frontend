@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Form, Button, Card, Segment } from 'semantic-ui-react'
+import { Form, Button, Card, Segment, Image, Grid } from 'semantic-ui-react'
 import RecipeCard from './RecipeCard.js'
 import RecipeCardBig from './RecipeCardBig.js'
 
@@ -123,8 +123,21 @@ export default class RecipesPage extends Component {
       this.props.history.push("/")
     }
 
+
+
     return (
-      <div style={{margin: "50px auto", width: "90%"}}>
+
+      <div style={{margin: "auto", width: "90%"}}>
+        <Segment style={{}}>
+          <Grid>
+            <Grid.Column floated="left" width={1}>
+              <Image alt="user" src={this.state.userData.image} style={{}}/>
+            </Grid.Column>
+            <Grid.Column floated="right" width={5}>
+              <h3 style={{float: 'right', marginTop:'9px'}}>Welcome, {this.state.userData.username}!</h3>
+            </Grid.Column>
+          </Grid>
+        </Segment>
         {
           this.state.selectedRecipe ? (
             <RecipeCardBig
