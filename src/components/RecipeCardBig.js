@@ -220,40 +220,41 @@ export default class RecipeCardBig extends Component {
 
             <hr width="50%"/>
             {
-              this.props.userData.favorites.includes(id)
-              ?
-              <Fragment>
-                <Grid.Row centered>
-                  <Grid.Column width={4}>
-                    {this.renderNotes()}
-                  </Grid.Column>
-                </Grid.Row>
-
-                {this.state.editingNote ?
-                <Grid.Row centered>
-                  <Grid.Column>
-                  {this.renderEditForm()}
-                  </Grid.Column>
-                </Grid.Row> : null}
-
-                {this.state.addingNote ?
+              this.props.userData.favorites.includes(id) ? (
+                <Fragment>
                   <Grid.Row centered>
-                  <Grid.Column>
-                  {this.renderNoteForm()}
-                  </Grid.Column>
-                  </Grid.Row> : null
-                }
+                    <Grid.Column width={4}>
+                      {this.renderNotes()}
+                    </Grid.Column>
+                  </Grid.Row>
 
-                {this.state.addingNote ? null : <Grid.Row centered>
-                  <Button positive
-                  style={{margin:"20px"}}
-                  onClick={this.setAddingNote}
-                  >Add A Note</Button>
-                </Grid.Row>}
+                  {this.state.editingNote ?
+                  <Grid.Row centered>
+                    <Grid.Column>
+                    {this.renderEditForm()}
+                    </Grid.Column>
+                  </Grid.Row> : null}
 
-                <hr width="50%"/>
-              </Fragment>
-              : null
+                  {this.state.addingNote ?
+                    <Grid.Row centered>
+                    <Grid.Column>
+                    {this.renderNoteForm()}
+                    </Grid.Column>
+                    </Grid.Row> : null
+                  }
+
+                  {this.state.addingNote ? null : <Grid.Row centered>
+                    <Button positive
+                    style={{margin:"20px"}}
+                    onClick={this.setAddingNote}
+                    >Add A Note</Button>
+                  </Grid.Row>}
+
+                  <hr width="50%"/>
+                </Fragment>
+              ) : (
+                <Grid.Row centered>Favorite this recipe to add Notes</Grid.Row>
+              )
             }
             <Grid.Row>
               <Grid.Column centered>

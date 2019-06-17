@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Form, Button, Card } from 'semantic-ui-react'
+import { Form, Button, Card, Segment } from 'semantic-ui-react'
 import RecipeCard from './RecipeCard.js'
 import RecipeCardBig from './RecipeCardBig.js'
 
@@ -31,25 +31,7 @@ export default class RecipesPage extends Component {
       headers: { Authorization: localStorage.getItem("token") }
     }).then(r => r.json())
       .then(userData => this.setState({userData}))
-      // .then(
-      //   fetch(`http://localhost:3000/favorites`).then(r=>r.json()).then(favs=>{
-      //     console.log("FAVVVA",favs)
-      //     this.setState({
-      //       userData: {...this.state.userData, favorites: [...favs]}
-      //     })
-      //   })
-      //
-      //
-      //
-      // )
-
-
-
-
   }
-
-
-
 
   selectRecipe = e => {
     if (e.target.closest(".button")) {
@@ -86,9 +68,6 @@ export default class RecipesPage extends Component {
   }
 
   handleFavBtnClick = e => {
-
-
-
     const recipeId = parseInt(e.target.closest(".card").id, 10)
 
     // const favoriteArray = this.state.userData.favorites.filter(fav=>{
@@ -153,6 +132,9 @@ export default class RecipesPage extends Component {
 
   render() {
     // console.log("RecipesPage state: ", this.state)
+    if (!localStorage.token) {
+      this.props.history.push("/")
+    }
 
     return (
       <div style={{margin: "50px auto", width: "90%"}}>
@@ -171,18 +153,20 @@ export default class RecipesPage extends Component {
 
               <br/>
 
-              <Form style={{ backgroundColor: "white", border: "2px solid #d2d2d2", borderRadius: "10px", padding: "10px"}} onSubmit={this.createRecipe}>
-                Add New Recipe
-                <br/>
-                <Form.Field>
-                  <label>Recipe</label>
-                  <input
-                    placeholder='Recipe URL'
-                    value={this.state.searchUrl}
-                    onChange={e => this.setState({searchUrl: e.target.value})}/>
-                </Form.Field>
-                <Button sytle={{margin: "10px"}}type='submit'>Submit</Button>
-              </Form>
+              <Segment>
+                <Form style={{padding: "10px", marginRight: "30px"}} onSubmit={this.createRecipe}>
+                  Add New Recipe
+                  <br/>
+                  <Form.Field>
+                    <label>Recipe</label>
+                    <input
+                      placeholder='Recipe URL'
+                      value={this.state.searchUrl}
+                      onChange={e => this.setState({searchUrl: e.target.value})}/>
+                  </Form.Field>
+                  <Button sytle={{margin: "10px"}}type='submit'>Submit</Button>
+                </Form>
+              </Segment>
             </Fragment>
           )
         }

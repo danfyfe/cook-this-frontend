@@ -61,7 +61,7 @@ class Timer extends React.Component{
         <hr width="75%"/>
 
           {this.state.timerDone ? this.foodDone() : null}
-        <Form>
+        <Form style={{marginRight: "30px"}}>
             <Form.Field>
               <input type="text" name="hours" placeholder="hours"
               onChange={this.setTimes}/>
