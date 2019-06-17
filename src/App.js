@@ -18,7 +18,7 @@ export default class App extends React.Component {
     console.log("App state", this.state)
 
     return (
-      <div className="App">
+      <div style={{marginBottom: "20px"}}className="App">
         <Menu style={{backgroundColor: "#B83329", borderRadius: "0px", borderBottom: "black solid"}}>
           <Menu.Item header className="top" style={{border: "none !important"}}>
             <img className="logo" alt="chef hat" src="https://i.imgur.com/FtclHY5.png"/>

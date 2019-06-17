@@ -54,7 +54,7 @@ export default class HomePage extends Component {
             </Grid.Column>
 
 
-            <Grid.Column verticalAlign='middle' width={6}>
+            <Grid.Column verticalAlign='middle'>
               <Button content='Sign up' icon='signup' size='big'
                 onClick={() => this.props.history.push("/signup")}/>
             </Grid.Column>
