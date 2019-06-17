@@ -13,7 +13,7 @@ export default class App extends React.Component {
       <div className="App">
         <Menu>
           <Menu.Item header className="top">
-          <img className="logo" alt="chef hat" src="https://previews.dropbox.com/p/thumb/AAd_9EWPHSZsHFHZ7761DVtXEtIHfdKvng1oC0t3sOBW6V4YWhLmVXmoyoLSSjwRXmpj9PVpalP2MubH7x7saFLEDtQY1xLZKj1vrufU5RHNRQyDgS0MxpCvl-eFRK8x0CiHu9ptutIBZsTrYXQRtswCvLy2egVHK1JPEEJQklDibQ-a1P-J_Bh0SkRy3XAn2Htcyc9iUssQUomNVhQhAcwEYQF91zK_s0zz6hty-yJZII2F77NmfyoA6WuVJ6kMd3u7tiW8ml7WuB7q6w2zjPke3EDWKyoUdJmXoEAm_T4hn9iyEWQa5DkghEhNESLNJHMREpZc9Sm0XJekV4cuJj1Y/p.png?fv_content=true&size_mode=5"/>
+          <img className="logo" alt="chef hat" src="https://lh3.googleusercontent.com/_xxg2D1xKu8oxw51HmKJCFj5YsGbY5xHgGzGFn1BtwEpq53GD3OoYqqnm0Fnq240FMevWtW3I5wup2BA2Z2aYjyaBlGKW_Z0f_Ei-ZHp4tt-RrkM8RW0nPdvg0IY5Ss_5v5YwEMgdCF8befaEAQx-2NoWmux14AbTyMtzPQsPQstbXA7Lw2RvycalDPgyX10RdLRWuUSKLrJ4IbVySlk_EHnXVLKRk93gzF5hRYFkN71pAnUsoS-n2CXrVD_tv10xPgP2g7kTPNNqYrnCVAjEW-1FMEi6IH9ip602uD5PF-eB0oAh2K-bY4XFhN6D9kGwKLyB-C723QctDJgdE-0I03WHQeRydAsbgnO9GoOxIunJXhi8ByqdBbG-9VkXbbZ3XxK6C5ug0iB5ZAtuo6mLXjVl63YBygAWkpaPhdVdVxmSACVC0giY_mvT8fu-dWktzx76USDBXc1_SJYhVnmgg9k62iy5H_jGxy1A2ANFaAaY_OjqR-iQUOtjl5HAHKGWpC5H2TsONpFuncohmyLb8E93U7Ccd_EEAE6TnkbXNMFyCZ7MlPwOnyxUUCxQbExwSuWVvQ7qWwma5WcbtJlfTF7rIBioNMU0rArHBvb1eosvWjK8yk_T-wCMJ5eZ8qJk8khnqXNsTuCRjZLfPQxf0x1h5tjHDo=s512-no"/>
           <div className="title">Cook This!</div>
           </Menu.Item>
         </Menu>
