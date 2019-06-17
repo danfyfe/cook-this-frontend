@@ -35,7 +35,6 @@ export default class Note extends Component {
             {this.props.note.content}
           </Card.Content>
 
-
           <Grid.Row style={{margin:"10px"}} centered>
             <Grid.Column width={2} style={{textAlign: "center"}}>
             {this.props.editingNote ? null :
