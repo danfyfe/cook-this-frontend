@@ -70,16 +70,17 @@ body {
   display: table;
 }
 
-.top{
-  /* position: fixed; */
+/* .top {
   border-radius: 0 !important;
   border-bottom: black solid;
   background-color: #B83329 !important;
   height: 8vh;
   width: 100%;
-  /* top: 0;
-  left:0; */
-}
+
+  position: fixed;
+  top: 0;
+  left:0;
+} */
 
 .logo{
   margin: 10px !important;
