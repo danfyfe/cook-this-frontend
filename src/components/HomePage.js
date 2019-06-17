@@ -1,4 +1,5 @@
 import React, { Component, } from 'react'
+import { Redirect } from 'react-router'
 import { Button, Segment, Grid, Form, Divider } from 'semantic-ui-react'
 
 export default class HomePage extends Component {
@@ -32,32 +33,36 @@ export default class HomePage extends Component {
   }
 
   render() {
-    if (localStorage.token) {
-      this.props.history.push("/recipes")
-    }
+    // if (localStorage.token) {
+    //   // this.props.history.push("/recipes")
+    //
+    // }
 
-    return (
-      <Segment placeholder style={{margin: "100px 200px"}}>
-        <Grid columns={2} relaxed='very' stackable>
-          <Grid.Column width={6}>
-            <Form onSubmit={this.handleSubmit}>
-              <Form.Input icon='user' iconPosition='left' label='Username' placeholder='Username'
-                name='username' onChange={this.handleChange} />
-              <Form.Input icon='lock' iconPosition='left' label='Password' type='password'
-                name='password' onChange={this.handleChange} />
-              <Button content='Login' primary />
-            </Form>
-          </Grid.Column>
+    return ( localStorage.token ? (
+      <Redirect to={"/recipes"} />
+    ) : (
+        <Segment placeholder style={{margin: "100px 200px"}}>
+          <Grid columns={2} relaxed='very' stackable>
+            <Grid.Column width={6}>
+              <Form onSubmit={this.handleSubmit}>
+                <Form.Input icon='user' iconPosition='left' label='Username' placeholder='Username'
+                  name='username' onChange={this.handleChange} />
+                <Form.Input icon='lock' iconPosition='left' label='Password' type='password'
+                  name='password' onChange={this.handleChange} />
+                <Button content='Login' primary />
+              </Form>
+            </Grid.Column>
 
 
-          <Grid.Column verticalAlign='middle' width={6}>
-            <Button content='Sign up' icon='signup' size='big'
-              onClick={() => this.props.history.push("/signup")}/>
-          </Grid.Column>
-        </Grid>
+            <Grid.Column verticalAlign='middle' width={6}>
+              <Button content='Sign up' icon='signup' size='big'
+                onClick={() => this.props.history.push("/signup")}/>
+            </Grid.Column>
+          </Grid>
 
-        <Divider vertical>Or</Divider>
-      </Segment>
+          <Divider vertical>Or</Divider>
+        </Segment>
+      )
     )
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Button } from 'semantic-ui-react'
+import { Menu, Button, Card } from 'semantic-ui-react'
 import { Switch, Route } from 'react-router-dom'
 import './App.css';
 import SignupPage from './components/SignupPage'
@@ -7,6 +7,12 @@ import HomePage from './components/HomePage'
 import RecipesPage from './components/RecipesPage'
 
 export default class App extends React.Component {
+  state = {
+    userData: null
+  }
+
+  setUserData = userData => this.setState({userData})
+
   render() {
     console.log("App props", this.props)
     console.log("App state", this.state)
@@ -20,17 +26,33 @@ export default class App extends React.Component {
           </Menu.Item>
 
           {
+            this.state.userData ? (
+              <Menu.Item position="right" style={{textAlign: "right", fontSize: "20px"}}>
+                Logged in as {this.state.userData.username}
+                <img src={this.state.userData.image}/>
+              </Menu.Item>
+            ) : null
+          }
+
+          {
             localStorage.token ? (
-              <Menu.Item position="right" style={{alignItems: "center"}}>
-              <Button negative onClick={() => {delete localStorage.token; this.props.history.push("/")}}>Logout</Button>
-            </Menu.Item>
+              <Menu.Item position="right" style={{alignItems: "center", marginLeft: "0px !important"}}>
+                <Button negative onClick={() => {
+                    delete localStorage.token
+                    this.props.history.push("/")
+                    this.setUserData(null)
+                  }}
+                >Logout</Button>
+              </Menu.Item>
             ) : null
           }
         </Menu>
         <Switch>
           <Route exact path="/" render={({ history }) => <HomePage history={history} /> } />
           <Route path="/signup" render={({ history }) => <SignupPage history={history} />} />
-          <Route path="/recipes" render={({ history }) => <RecipesPage history={history} />} />
+          <Route path="/recipes" render={({ history }) => (
+              <RecipesPage history={history} setUserDataOfApp={this.setUserData}/>
+          )} />
         </Switch>
       </div>
     )

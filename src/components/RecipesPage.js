@@ -17,7 +17,10 @@ export default class RecipesPage extends Component {
     fetch("http://localhost:3000/profile", {
       headers: { Authorization: localStorage.getItem("token") }
     }).then(r => r.json())
-      .then(userData => this.setState({userData}))
+      .then(userData => {
+        this.setState({userData})
+        this.props.setUserDataOfApp(userData)
+      })
   }
 
   createRecipe = () => {
