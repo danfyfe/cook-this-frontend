@@ -58,6 +58,7 @@ export default class RecipeCardBig extends Component {
       })
     })
   }
+
   cancelAdd = ()=>{
     this.setState({addingNote: !this.state.addingNote})
   }
