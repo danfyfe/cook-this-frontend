@@ -197,9 +197,11 @@ export default class RecipeCardBig extends Component {
 
             <Grid.Row centered>
               <Grid.Column width={4}>
-                <ul>
+                <List>
+                  <List.Item>
                   {ingredients.map(ingr => <Ingredient ingredient={ingr}/>)}
-                </ul>
+                  </List.Item>
+                </List>
               </Grid.Column>
               <Grid.Column width={8}>
               <List ordered>
