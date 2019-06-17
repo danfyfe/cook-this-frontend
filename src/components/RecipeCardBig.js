@@ -38,7 +38,6 @@ export default class RecipeCardBig extends Component {
 
   handleAddNoteClick=()=>{
     const recipeId = parseInt(this.props.recipe.id)
-    // const fav = this.props.userData.favorites.find((fav)=>{ return fav.recipe_id === recipeId})
     fetch("http://localhost:3000/notes", {
       method: "POST",
       headers:{
@@ -169,7 +168,6 @@ export default class RecipeCardBig extends Component {
     // console.log(this.state.editingNote)
     // console.log(this.props)
     // console.log("NoteFormContent", this.state.addNoteContent)
-
     const { id, title, image, description, prep_time: prepTime, cook_time: cookTime, ready_in_time: totalTime, ingredients, steps } = this.props.recipe
 
     return (

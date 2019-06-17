@@ -3,8 +3,6 @@ import { Button, Segment, Grid, Form, Divider } from 'semantic-ui-react'
 
 export default class HomePage extends Component {
   componentDidMount() {
-    console.log(this.props.location.pathname)
-
     if (localStorage.token) {
       this.props.history.push("/recipes")
     }

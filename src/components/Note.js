@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Button, Card, Grid, Form } from 'semantic-ui-react'
+import { Button, Card, Grid } from 'semantic-ui-react'
 
 
 export default class Note extends Component {
@@ -23,7 +23,6 @@ export default class Note extends Component {
 
   render(){
     // console.log(this.state.editingNote)
-
     return(
       <Fragment>
         <Card id={this.props.note.id} style={{margin:"20px"}}>
