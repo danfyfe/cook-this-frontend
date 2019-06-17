@@ -23,6 +23,15 @@ export default class RecipesPage extends Component {
       })
   }
 
+  updateUserDataNotes = (notes) => {
+    console.log("NOTES",notes)
+    this.setState({
+      userData: {...this.state.userData, notes:[...notes]}
+    })
+  }
+
+
+
   createRecipe = () => {
     // SEND URL TO recipes#create
     this.setState({searchUrl: ""})
@@ -128,13 +137,16 @@ export default class RecipesPage extends Component {
     return (
 
       <div style={{margin: "auto", width: "90%"}}>
-        <Segment style={{}}>
+        <Segment style={{width:"100%"}}>
           <Grid>
             <Grid.Column floated="left" width={1}>
-              <Image alt="user" src={this.state.userData.image} style={{}}/>
+              <Image alt="user-icon" src={this.state.userData.image}/>
             </Grid.Column>
-            <Grid.Column floated="right" width={5}>
-              <h3 style={{float: 'right', marginTop:'9px'}}>Welcome, {this.state.userData.username}!</h3>
+            <Grid.Column floated="center" width={5}>
+              <h3 style={{marginTop:'10px', textAlign:"center"}}>Welcome, {this.state.userData.username}!</h3>
+            </Grid.Column>
+            <Grid.Column floated="right" width={1}>
+              <Image alt="user-icon" src={this.state.userData.image}/>
             </Grid.Column>
           </Grid>
         </Segment>
@@ -144,11 +156,12 @@ export default class RecipesPage extends Component {
               key={this.state.selectedRecipe}
               userData={this.state.userData}
               recipe={this.state.selectedRecipe}
+              updateUserDataNotes={this.updateUserDataNotes}
               clearSelectedRecipe={this.clearSelectedRecipe} />
           ) : (
             <Fragment>
 
-              <Card.Group itemsPerRow={4} style={{margin: "auto"}}>
+              <Card.Group centered itemsPerRow={4} style={{margin: "auto"}}>
                 {this.renderRecipeCards()}
               </Card.Group>
 

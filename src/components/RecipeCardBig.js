@@ -63,7 +63,8 @@ export default class RecipeCardBig extends Component {
         notes: [...this.state.notes, note],
         addingNote: !this.state.addingNote,
         addNoteContent: ""
-      })
+      },()=>this.props.updateUserDataNotes(this.state.notes))
+
     })
   }
 
@@ -146,9 +147,10 @@ export default class RecipeCardBig extends Component {
       // this.state.notes.map(note => {
       //   return note.id === noteId ? null : notesCopy = [...notesCopy, note]
       // })
-      const notesCopy = this.state.notes.map(note => note.id !== noteId)
+      const notesCopy = this.state.notes.filter(note => note.id !== noteId)
+      // console.log(notesCopy)
+      this.setState({notes: notesCopy},()=>this.props.updateUserDataNotes(this.state.notes))
 
-      this.setState({notes: notesCopy})
     })
   }
 

@@ -26,12 +26,12 @@ export default class App extends React.Component {
           </Menu.Item>
 
           {
-            this.state.userData ? (
-              <Menu.Item position="right" style={{textAlign: "right", fontSize: "20px"}}>
-                Logged in as {this.state.userData.username}
-                <img src={this.state.userData.image}/>
-              </Menu.Item>
-            ) : null
+            // this.state.userData ? (
+            //   <Menu.Item position="right" style={{textAlign: "right", fontSize: "20px"}}>
+            //
+            //     <img alt="user"src={this.state.userData.image}/>
+            //   </Menu.Item>
+            // ) : null
           }
 
           {
