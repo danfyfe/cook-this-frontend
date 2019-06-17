@@ -31,25 +31,7 @@ export default class RecipesPage extends Component {
       headers: { Authorization: localStorage.getItem("token") }
     }).then(r => r.json())
       .then(userData => this.setState({userData}))
-      // .then(
-      //   fetch(`http://localhost:3000/favorites`).then(r=>r.json()).then(favs=>{
-      //     console.log("FAVVVA",favs)
-      //     this.setState({
-      //       userData: {...this.state.userData, favorites: [...favs]}
-      //     })
-      //   })
-      //
-      //
-      //
-      // )
-
-
-
-
   }
-
-
-
 
   selectRecipe = e => {
     if (e.target.closest(".button")) {
@@ -87,36 +69,17 @@ export default class RecipesPage extends Component {
 
   handleFavBtnClick = e => {
 
-
-
     const recipeId = parseInt(e.target.closest(".card").id, 10)
-
-    // const favoriteArray = this.state.userData.favorites.filter(fav=>{
-    //   return fav.recipe_id === recipeId
-    // })
-
-    // const favorite = this.state.userData.favorites.find(fav=>{
-    //   return fav.recipe_id === recipeId
-    // })
-
-    // const favorite = favoriteArray[0]
-
-
-    // debugger
 
     if (
       this.state.userData.favorites.includes(recipeId)
-      // favorite && favorite.recipe_id === recipeId
       )
    {
-     // debugger
       const userId = parseInt(this.state.userData.user.id, 10)
 
       fetch(`http://localhost:3000/favorites/${userId}/${recipeId}`, { method: "DELETE" })
         .then(r => {
             const favsCopy = this.state.userData.favorites.filter(favRecipeId => favRecipeId !== recipeId)
-
-            // const favsCopy = this.state.userData.favorites.filter(fav=>fav.recipe_id !== recipeId)
 
             this.setState({userData: {
               ...this.state.userData,
@@ -124,7 +87,6 @@ export default class RecipesPage extends Component {
             }})
           }
         )
-
     } else {
       fetch("http://localhost:3000/favorites", {
         method: "POST",
@@ -136,25 +98,23 @@ export default class RecipesPage extends Component {
       }).then(r => r.json())
         .then(favorite =>
           // console.log("Fav return",favorite)
-
           this.setState({
           userData: {
             ...this.state.userData,
             favorites: [
               ...this.state.userData.favorites,
-              favorite.recipe_id
-            ]
-          }
-        }
-      )
+              favorite.recipe_id]}
+          })
       )
     }
   }
 
   render() {
-    // console.log("RecipesPage state: ", this.state)
+    console.log("RecipesPage state: ", this.state)
+    // console.log("UserImage", this.state.userData.user)
 
     return (
+
       <div style={{margin: "50px auto", width: "90%"}}>
         {
           this.state.selectedRecipe ? (
@@ -165,6 +125,7 @@ export default class RecipesPage extends Component {
               clearSelectedRecipe={this.clearSelectedRecipe} />
           ) : (
             <Fragment>
+
               <Card.Group itemsPerRow={4} style={{margin: "auto"}}>
                 {this.renderRecipeCards()}
               </Card.Group>
