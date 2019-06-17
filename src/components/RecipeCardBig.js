@@ -23,28 +23,31 @@ export default class RecipeCardBig extends Component {
     // console.log("Fav",fav)
     // console.log("Favorites", this.props.userData.favorites)
     if (this.props.userData.favorites.includes(recipeId)) {
-      fetch(`http://localhost:3000/notes/${recipeId}`)
-      .then(resp=>resp.json())
-      .then(notes=>{
-        // console.log("Notes",notes)
-        let favNotes = [...notes]
-
-          this.setState({
-            notes: favNotes
-          })
-        })
+      const notes = this.props.userData.notes
+      debugger
+      // fetch(`http://localhost:3000/notes/${recipeId}`)
+      // .then(resp=>resp.json())
+      // .then(notes=>{
+      //   // console.log("Notes",notes)
+      //   let favNotes = [...notes]
+      //
+      //     this.setState({
+      //       notes: favNotes
+      //     })
+      //   })
     }
   }
 
-  handleAddNoteClick=()=>{
+  handleAddNoteClick = () => {
     const recipeId = parseInt(this.props.recipe.id)
     fetch("http://localhost:3000/notes", {
       method: "POST",
-      headers:{
+      headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
         recipe_id: recipeId,
+        user_id: this.props.userData.user.id,
         content: this.state.addNoteContent
       })
     })
@@ -228,27 +231,34 @@ export default class RecipeCardBig extends Component {
                     </Grid.Column>
                   </Grid.Row>
 
-                  {this.state.editingNote ?
-                  <Grid.Row centered>
-                    <Grid.Column>
-                    {this.renderEditForm()}
-                    </Grid.Column>
-                  </Grid.Row> : null}
-
-                  {this.state.addingNote ?
-                    <Grid.Row centered>
-                    <Grid.Column>
-                    {this.renderNoteForm()}
-                    </Grid.Column>
-                    </Grid.Row> : null
+                  {
+                    this.state.editingNote ? (
+                      <Grid.Row centered>
+                        <Grid.Column>
+                          {this.renderEditForm()}
+                        </Grid.Column>
+                      </Grid.Row>
+                    ) : null
                   }
 
-                  {this.state.addingNote ? null : <Grid.Row centered>
-                    <Button positive
-                    style={{margin:"20px"}}
-                    onClick={this.setAddingNote}
-                    >Add A Note</Button>
-                  </Grid.Row>}
+                  {
+                    this.state.addingNote ? (
+                      <Grid.Row centered>
+                        <Grid.Column>
+                          {this.renderNoteForm()}
+                        </Grid.Column>
+                      </Grid.Row>
+                    ) : (
+                      <Grid.Row centered>
+                        <Button positive
+                        style={{margin:"20px"}}
+                        onClick={this.setAddingNote}
+                        >Add A Note</Button>
+                      </Grid.Row>
+                    )
+                  }
+
+
 
                   <hr width="50%"/>
                 </Fragment>

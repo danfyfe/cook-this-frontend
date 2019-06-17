@@ -11,6 +11,15 @@ export default class RecipesPage extends Component {
     userData: {}
   }
 
+  componentDidMount() {
+    fetch("http://localhost:3000/recipes").then(r => r.json()).then(recipes => this.setState({recipes}))
+
+    fetch("http://localhost:3000/profile", {
+      headers: { Authorization: localStorage.getItem("token") }
+    }).then(r => r.json())
+      .then(userData => this.setState({userData}))
+  }
+
   createRecipe = () => {
     // SEND URL TO recipes#create
     fetch("http://localhost:3000/recipes", {
@@ -22,15 +31,6 @@ export default class RecipesPage extends Component {
       .then(recipe => {
         this.setState({recipes: [...this.state.recipes, recipe], searchUrl: ""})
       })
-  }
-
-  componentDidMount() {
-    fetch("http://localhost:3000/recipes").then(r => r.json()).then(recipes => this.setState({recipes}))
-
-    fetch("http://localhost:3000/profile", {
-      headers: { Authorization: localStorage.getItem("token") }
-    }).then(r => r.json())
-      .then(userData => this.setState({userData}))
   }
 
   selectRecipe = e => {
@@ -45,12 +45,19 @@ export default class RecipesPage extends Component {
 
   clearSelectedRecipe = () => this.setState({selectedRecipe: null})
 
+  favRecipeIds = () => {
+    if (this.state.userData.favorites) {
+      return this.state.userData.favorites.map(fav => fav.recipe_id)
+    } else {
+      return []
+    }
+  }
+
   renderRecipeCards = () => {
-    // console.log("renderRecipeCards", this.state.userData.favorites)
     return this.state.recipes.map(recipe => {
       const isFavorite = () => {
-        if (this.state.userData.favorites) {
-          return this.state.userData.favorites.includes(recipe.id)
+        if (this.favRecipeIds().length > 0) {
+          return this.favRecipeIds().includes(recipe.id)
         } else {
           return false
         }
@@ -70,15 +77,12 @@ export default class RecipesPage extends Component {
   handleFavBtnClick = e => {
     const recipeId = parseInt(e.target.closest(".card").id, 10)
 
-    if (
-      this.state.userData.favorites.includes(recipeId)
-      )
-   {
+    if (this.favRecipeIds().includes(recipeId)) {
       const userId = parseInt(this.state.userData.user.id, 10)
 
       fetch(`http://localhost:3000/favorites/${userId}/${recipeId}`, { method: "DELETE" })
         .then(r => {
-            const favsCopy = this.state.userData.favorites.filter(favRecipeId => favRecipeId !== recipeId)
+            const favsCopy = this.state.userData.favorites.filter(fav => fav.recipe_id !== recipeId)
 
             this.setState({userData: {
               ...this.state.userData,
@@ -102,7 +106,8 @@ export default class RecipesPage extends Component {
             ...this.state.userData,
             favorites: [
               ...this.state.userData.favorites,
-              favorite.recipe_id]}
+              favorite
+            ]}
           })
       )
     }
@@ -142,7 +147,7 @@ export default class RecipesPage extends Component {
                       value={this.state.searchUrl}
                       onChange={e => this.setState({searchUrl: e.target.value})}/>
                   </Form.Field>
-                  <Button sytle={{margin: "10px"}}type='submit'>Submit</Button>
+                  <Button sytle={{margin: "10px"}} type='submit'>Submit</Button>
                 </Form>
               </Segment>
             </Fragment>
