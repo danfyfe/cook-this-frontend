@@ -6,14 +6,6 @@ export default class RecipesCard extends Component {
     isFavorite: false
   }
 
-  // componentDidMount() {
-  //   if (this.props.userData.favorites) {
-  //     if (this.props.userData.favorites.includes(this.props.recipe.id)) {
-  //       this.setState({isFavorite: true})
-  //     }
-  //   }
-  // }
-
   render() {
     const {id, title, image, description, ready_in_time: cookTime} = this.props.recipe
 

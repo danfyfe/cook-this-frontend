@@ -28,8 +28,6 @@ export default class SignupPage extends Component {
 
 
   render() {
-    console.log("SignupPage State: ", this.state)
-
     return (
       <Segment style={{margin: "100px 200px"}}>
         Hey you! Sign up!
@@ -38,14 +36,17 @@ export default class SignupPage extends Component {
             <label>Username</label>
             <input name="username" placeholder="Username" onChange={this.handleChange}/>
           </Form.Field>
+
           <Form.Field>
             <label>Password</label>
             <input name="password" type="password" placeholder="Password" onChange={this.handleChange}/>
           </Form.Field>
+
           <Form.Field>
             <label>Confirm Password</label>
             <input name="passwordConfirm" type="password" placeholder="Confirm Password" onChange={this.handleChange}/>
           </Form.Field>
+
           <Button type="submit">Signup</Button>
         </Form>
       </Segment>

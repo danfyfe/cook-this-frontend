@@ -4,7 +4,7 @@ import { Button, Form } from 'semantic-ui-react'
 import '../App.css';
 // const TimeFormat = require('hh-mm-ss')
 
-class Timer extends React.Component{
+export default class Timer extends React.Component{
   state = {
     hours: 0,
     minutes: 0,
@@ -21,7 +21,7 @@ class Timer extends React.Component{
     return totalMS
   }
 
-  setTimes = event =>{
+  setTimes = event => {
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -59,19 +59,22 @@ class Timer extends React.Component{
 
         <hr width="75%"/>
 
-          {this.state.timerDone ? this.foodDone() : null}
+        {this.state.timerDone ? this.foodDone() : null}
+
         <Form style={{marginRight: "30px"}}>
-            <Form.Field>
-              <input type="text" name="hours" placeholder="hours"
-              onChange={this.setTimes}/>
-            </Form.Field>
-            <Form.Field>
-              <input type="text" name="minutes" placeholder="mins"
-              onChange={this.setTimes}/>
-            </Form.Field>
-            <Form.Field>
-              <input type="text" name="seconds" placeholder="secs"onChange={this.setTimes}/>
-            </Form.Field>
+          <Form.Field>
+            <input type="text" name="hours" placeholder="hours"
+            onChange={this.setTimes}/>
+          </Form.Field>
+
+          <Form.Field>
+            <input type="text" name="minutes" placeholder="mins"
+            onChange={this.setTimes}/>
+          </Form.Field>
+
+          <Form.Field>
+            <input type="text" name="seconds" placeholder="secs"onChange={this.setTimes}/>
+          </Form.Field>
         </Form>
 
         <hr width="75%"/>
@@ -83,8 +86,3 @@ class Timer extends React.Component{
     )
   }
 }
-
-
-
-
-export default Timer

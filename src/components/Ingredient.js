@@ -6,9 +6,9 @@ export default class Ingredient extends Component {
     checked: false
   }
 
-  checkBox=()=>{
+  checkBox = () => {
     this.setState({
-      checked : !this.state.checked
+      checked: !this.state.checked
     })
   }
 
@@ -17,7 +17,16 @@ export default class Ingredient extends Component {
 
     return(
       <List.Item className="check-box">
-        {this.state.checked ? (<Checkbox onClick={this.checkBox} label= {content} style={{textDecoration: "line-through", opacity: "0.3"}}/> ): <Checkbox onClick={this.checkBox} label= {content} />}
+        {
+          this.state.checked ? (
+            <Checkbox
+              onClick={this.checkBox}
+              label= {content}
+              style={{textDecoration: "line-through", opacity: "0.3"}}/>
+          ) : (
+            <Checkbox onClick={this.checkBox} label= {content} />
+          )
+        }
       </List.Item>
     )
   }

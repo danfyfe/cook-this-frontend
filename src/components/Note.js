@@ -3,26 +3,7 @@ import { Button, Card, Grid } from 'semantic-ui-react'
 
 
 export default class Note extends Component {
-  // state = {
-  //   editingNote: false
-  // }
-  //
-  // setEditing=()=>{
-  //     this.setState({
-  //       editingNote: !this.state.editingNote
-  //     })
-  // }
-  //
-  //
-  // renderEditForm=()=>{
-  //   return <Form style={{ backgroundColor: "white", border: "2px solid #d2d2d2", borderRadius: "10px", padding: "10px", width:"100%", margin:"0 auto"}}>
-  //
-  //   </Form>
-  // }
-
-
   render(){
-    // console.log(this.state.editingNote)
     return(
       <Grid.Column width={4}>
         <Card id={this.props.note.id} style={{margin:"20px"}}>

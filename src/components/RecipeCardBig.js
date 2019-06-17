@@ -141,35 +141,40 @@ export default class RecipeCardBig extends Component {
 
   handleDeleteNote = noteId => {
     fetch(`http://localhost:3000/notes/${noteId}`, {method:"DELETE"}).then(resp=>{
-      let notesCopy = []
-      // console.log(notesCopy)
-      this.state.notes.map(note => {
-        return note.id === noteId ? null : notesCopy = [...notesCopy, note]
-      })
-      this.setState({
-        notes: notesCopy
-      })
+      // let notesCopy = []
+      //
+      // this.state.notes.map(note => {
+      //   return note.id === noteId ? null : notesCopy = [...notesCopy, note]
+      // })
+      const notesCopy = this.state.notes.map(note => note.id !== noteId)
+
+      this.setState({notes: notesCopy})
     })
   }
 
-  setAddingNote = () => {
-    this.setState({
-      addingNote: !this.state.addingNote
-    })
-  }
+  setAddingNote = () => this.setState({addingNote: !this.state.addingNote})
 
-  renderNoteForm = () => {
-    return <Form style={{ backgroundColor: "white", border: "2px solid #d2d2d2", borderRadius: "10px", padding: "10px", width:"50%", margin:"0 auto"}}onSubmit={this.handleAddNoteClick}>
-        <Form.Field>
-          <label>Add Note:</label>
-          <input placeholder="...note content"
+  renderNoteForm = () => (
+    <Form
+      style={{
+        backgroundColor: "white", border: "2px solid #d2d2d2",
+        borderRadius: "10px", padding: "10px",
+        width:"50%", margin:"0 auto"
+      }}
+      onSubmit={this.handleAddNoteClick}
+    >
+      <Form.Field>
+        <label>Add Note:</label>
+        <input placeholder="...note content"
           value={this.state.addNoteContent}
           onChange={e => this.setState({addNoteContent:e.target.value})}/>
-        </Form.Field>
-        <Button sytle={{margin: "10px"}}type='submit'>Submit</Button>
-        <Button onClick={this.cancelAdd}sytle={{margin: "10px"}}>Cancel</Button>
-      </Form>
-  }
+      </Form.Field>
+
+      <Button sytle={{margin: "10px"}}type='submit'>Submit</Button>
+
+      <Button onClick={this.cancelAdd}sytle={{margin: "10px"}}>Cancel</Button>
+    </Form>
+  )
 
 
 
@@ -256,8 +261,8 @@ export default class RecipeCardBig extends Component {
                     ) : (
                       <Grid.Row centered>
                         <Button positive
-                        style={{margin:"20px"}}
-                        onClick={this.setAddingNote}
+                          style={{margin:"20px"}}
+                          onClick={this.setAddingNote}
                         >Add A Note</Button>
                       </Grid.Row>
                     )
