@@ -200,8 +200,11 @@ export default class RecipeCardBig extends Component {
 
             <hr width="70%"/>
 
-            <Grid.Row centered>
-              {description}
+            <Grid.Row centered stye={{}}>
+              <Grid.Column width={10}>
+                {description}
+              </Grid.Column>
+
             </Grid.Row>
 
             <Grid.Row centered>

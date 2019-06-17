@@ -21,7 +21,7 @@ class Timer extends React.Component{
     return totalMS
   }
 
-  setTimes = event =>{
+  setTimes = event => {
     this.setState({
       [event.target.name]: event.target.value
     })
