@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Segment } from 'semantic-ui-react'
 
 export default class SignupPage extends Component {
   state = {
@@ -31,9 +31,9 @@ export default class SignupPage extends Component {
     console.log("SignupPage State: ", this.state)
 
     return (
-      <div className="signup">
+      <Segment style={{margin: "100px 200px"}}>
         Hey you! Sign up!
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit} style={{margin: "0 30px 0 0"}}>
           <Form.Field>
             <label>Username</label>
             <input name="username" placeholder="Username" onChange={this.handleChange}/>
@@ -48,7 +48,7 @@ export default class SignupPage extends Component {
           </Form.Field>
           <Button type="submit">Signup</Button>
         </Form>
-      </div>
+      </Segment>
     )
   }
 }

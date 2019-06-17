@@ -23,20 +23,19 @@ export default class App extends React.Component {
 
           <Menu.Item position="right" style={{alignItems: "center"}}>
             {
-              localStorage.token ?
-              (
-                <Button negative style={{float: "right"}} onClick={() => {delete localStorage.token; this.props.history.push("/")}}>Logout</Button>
+              localStorage.token ? (
+                <Button negative onClick={() => {delete localStorage.token; this.props.history.push("/")}}>Logout</Button>
               ) : (
-                <Button positive style={{float: "right"}} onClick={() => this.props.history.push("/login")}>Login</Button>
+                <Button positive onClick={() => this.props.history.push("/login")}>Login</Button>
               )
             }
           </Menu.Item>
         </Menu>
         <Switch>
           <Route exact path="/" render={({ history }) => <HomePage history={history} /> } />
-          <Route path="/login" render={({ history }) => <LoginPage history={history} />} />
+          {/* <Route path="/login" render={({ history }) => <LoginPage history={history} />} /> */}
           <Route path="/signup" render={({ history }) => <SignupPage history={history} />} />
-          <Route path="/recipes" render={() => <RecipesPage grabUserData={this.grabUserData}/>} />
+          <Route path="/recipes" render={({ history }) => <RecipesPage history={history} />} />
         </Switch>
       </div>
     )
