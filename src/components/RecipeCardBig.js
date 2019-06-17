@@ -207,23 +207,20 @@ export default class RecipeCardBig extends Component {
             <Grid.Row centered>
               <Grid.Column width={4}>
                 <List>
-                  <List.Item>
-                  {ingredients.map(ingr => <Ingredient ingredient={ingr}/>)}
-                  </List.Item>
+                  { ingredients.map((ingr, i) => <Ingredient key={i} ingredient={ingr}/>) }
                 </List>
               </Grid.Column>
+
               <Grid.Column width={8}>
-              <List ordered>
-                  {steps.map(step =>  <List.Item><Step step={step}/></List.Item>)}
-              </List>
+                <List ordered>
+                  { steps.map(step =>  <List.Item><Step step={step}/></List.Item>) }
+                </List>
               </Grid.Column>
             </Grid.Row>
 
             <Grid.Row centered>
               <div style={{margin: "0 auto", padding:"10px", border: "1px solid darkgrey", borderRadius:"10px"}}>
-                {
-                  this.state.timerVisible ? <Timer/> : null
-                }
+                { this.state.timerVisible ? <Timer/> : null }
                 <Button
                   onClick={() => {this.setState({timerVisible: !this.state.timerVisible})}}
                   attached="bottom"
@@ -236,9 +233,7 @@ export default class RecipeCardBig extends Component {
               this.favRecipeIds().includes(id) ? (
                 <Fragment>
                   <Grid.Row centered>
-                    <Grid.Column width={4}>
                       {this.renderNotes()}
-                    </Grid.Column>
                   </Grid.Row>
 
                   {

@@ -22,6 +22,7 @@ export default class RecipesPage extends Component {
 
   createRecipe = () => {
     // SEND URL TO recipes#create
+    this.setState({searchUrl: ""})
     fetch("http://localhost:3000/recipes", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -29,7 +30,7 @@ export default class RecipesPage extends Component {
     })
       .then(r => r.json())
       .then(recipe => {
-        this.setState({recipes: [...this.state.recipes, recipe], searchUrl: ""})
+        this.setState({recipes: [...this.state.recipes, recipe]})
       })
   }
 

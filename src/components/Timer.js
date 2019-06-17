@@ -5,7 +5,7 @@ import '../App.css';
 // const TimeFormat = require('hh-mm-ss')
 
 class Timer extends React.Component{
-  state={
+  state = {
     hours: 0,
     minutes: 0,
     seconds: 0,
@@ -13,7 +13,7 @@ class Timer extends React.Component{
     timerDone: false
   }
 
-  timeToMS=()=>{
+  timeToMS = () => {
     let hoursToSecs = parseInt(this.state.hours) * 3600;
     let minsToSecs = parseInt(this.state.minutes) * 60;
     let totalSecs = hoursToSecs + minsToSecs + parseInt(this.state.seconds)
@@ -21,37 +21,36 @@ class Timer extends React.Component{
     return totalMS
   }
 
-
   setTimes = event =>{
     this.setState({
-      [event.target.name]:event.target.value
+      [event.target.name]: event.target.value
     })
   }
 
-  setMS = (event)=>{
+  setMS = event => {
     event.preventDefault()
     this.setState({
       totalMS: this.timeToMS()
     })
   }
 
-  resetTimer=()=>{
+  resetTimer = () => {
     this.setState({
       timerDone: false
     })
   }
 
-  foodTimer = ()=>{
+  foodTimer = () => {
     this.setState({
       timerDone: true
     })
   }
 
-  foodDone=()=>{
+  foodDone = () => {
     return <h1 className="food-done">The Food Is Done, Probably!</h1>
   }
 
-  render(){
+  render() {
     console.log(this.state)
     return(
       <div>
