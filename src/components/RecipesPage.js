@@ -78,7 +78,7 @@ export default class RecipesPage extends Component {
     const recipeId = parseInt(e.target.closest(".card").id, 10)
 
     if (this.favRecipeIds().includes(recipeId)) {
-      const userId = parseInt(this.state.userData.user.id, 10)
+      const userId = parseInt(this.state.userData.id, 10)
 
       fetch(`http://localhost:3000/favorites/${userId}/${recipeId}`, { method: "DELETE" })
         .then(r => {
@@ -95,7 +95,7 @@ export default class RecipesPage extends Component {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          user_id: this.state.userData.user.id,
+          user_id: this.state.userData.id,
           recipe_id: e.target.closest(".card").id
         })
       }).then(r => r.json())
@@ -114,6 +114,7 @@ export default class RecipesPage extends Component {
   }
 
   render() {
+    console.log("RecipesPage state", this.state);
     if (!localStorage.token) {
       this.props.history.push("/")
     }
@@ -123,7 +124,7 @@ export default class RecipesPage extends Component {
         {
           this.state.selectedRecipe ? (
             <RecipeCardBig
-              key ={this.state.selectedRecipe}
+              key={this.state.selectedRecipe}
               userData={this.state.userData}
               recipe={this.state.selectedRecipe}
               clearSelectedRecipe={this.clearSelectedRecipe} />

@@ -16,15 +16,21 @@ export default class RecipeCardBig extends Component {
     editNoteContent: ""
   }
 
-  componentDidMount(){
+  favRecipeIds = () => this.props.userData.favorites.map(fav => fav.recipe_id)
+
+  componentDidMount() {
     const recipeId = parseInt(this.props.recipe.id)
     // console.log("Recipe", recipeId)
     // console.log("Props", this.props)
     // console.log("Fav",fav)
     // console.log("Favorites", this.props.userData.favorites)
-    if (this.props.userData.favorites.includes(recipeId)) {
-      const notes = this.props.userData.notes
-      debugger
+    if (this.favRecipeIds().includes(recipeId)) {
+      const favId = this.props.userData.favorites.find(fav => fav.recipe_id === this.props.recipe.id).id
+      const notes = this.props.userData.notes.filter(note => note.favorite_id === favId)
+      this.setState({notes})
+      // const notes = this.props.userData.notes.filter(note => note.recipe_id === recipeId)
+
+      // this.setState()
       // fetch(`http://localhost:3000/notes/${recipeId}`)
       // .then(resp=>resp.json())
       // .then(notes=>{
@@ -47,50 +53,50 @@ export default class RecipeCardBig extends Component {
       },
       body: JSON.stringify({
         recipe_id: recipeId,
-        user_id: this.props.userData.user.id,
+        user_id: this.props.userData.id,
         content: this.state.addNoteContent
       })
     })
-    .then(resp=>resp.json()).then(note=>{
+    .then(resp => resp.json()).then(note => {
       // console.log("Added Note",note)
       this.setState({
-        notes: [...this.state.notes,note],
+        notes: [...this.state.notes, note],
         addingNote: !this.state.addingNote,
         addNoteContent: ""
       })
     })
   }
 
-  cancelAdd = ()=>{
+  cancelAdd = () => {
     this.setState({addingNote: !this.state.addingNote})
   }
 
-  renderNotes=()=>{
+  renderNotes= () => {
   // console.log("renderNotes!")
-    return this.state.notes.map(note=>{
+    return this.state.notes.map(note => {
       return <Note
-      editingNote={this.state.editingNote}
-      key={note.id}
-      note={note}
-      handleEditNote={this.handleEditNote}
-      setEditingNote={this.setEditingNote} handleDeleteNote={this.handleDeleteNote} />
+        editingNote={this.state.editingNote}
+        key={note.id}
+        note={note}
+        handleEditNote={this.handleEditNote}
+        setEditingNote={this.setEditingNote} handleDeleteNote={this.handleDeleteNote} />
     })
   }
 
 
-  setEditingNote=(note)=>{
+  setEditingNote = note => {
     this.setState({
       editingNote: !this.state.editingNote,
       noteToEdit: note,
       editNoteContent: note.content
     })
   }
-  cancelEdit=()=>{
+  cancelEdit = () => {
     this.setState({editingNote: !this.state.editingNote})
   }
 
 
-  renderEditForm=()=>{
+  renderEditForm = () => {
     return <Form style={{ backgroundColor: "white", border: "2px solid #d2d2d2", borderRadius: "10px", padding: "10px", width:"50%", margin:"0 auto"}} onSubmit={this.handleEditNoteClick}>
         <Form.Field>
           <label>Edit Note:</label>
@@ -103,7 +109,7 @@ export default class RecipeCardBig extends Component {
       </Form>
   }
 
-  handleEditNoteClick=()=>{
+  handleEditNoteClick = () => {
     let note = this.state.noteToEdit
     // console.log(this.state)
     // console.log("Note", note)
@@ -116,28 +122,28 @@ export default class RecipeCardBig extends Component {
       id: note.id,
       content: this.state.editNoteContent
     })
-  }).then(r=>r.json())
-  .then(updatedNote=>{
-    let newNotes = []
+  }).then(r => r.json())
+    .then(updatedNote=>{
+      let newNotes = []
 
-    this.state.notes.map(mapNote=>{
-      return mapNote.id === updatedNote.id ? null : newNotes = [...newNotes, mapNote]
+      this.state.notes.map(mapNote => {
+        return mapNote.id === updatedNote.id ? null : newNotes = [...newNotes, mapNote]
+      })
+
+      newNotes = [...newNotes, updatedNote]
+
+      this.setState({
+        notes: newNotes,
+        editingNote: !this.state.editingNote
+      })
     })
-
-    newNotes = [...newNotes, updatedNote]
-
-    this.setState({
-      notes: newNotes,
-      editingNote: !this.state.editingNote
-    })
-  })
   }
 
-  handleDeleteNote=(noteId)=>{
+  handleDeleteNote = noteId => {
     fetch(`http://localhost:3000/notes/${noteId}`, {method:"DELETE"}).then(resp=>{
       let notesCopy = []
       // console.log(notesCopy)
-      this.state.notes.map(note=>{
+      this.state.notes.map(note => {
         return note.id === noteId ? null : notesCopy = [...notesCopy, note]
       })
       this.setState({
@@ -146,19 +152,19 @@ export default class RecipeCardBig extends Component {
     })
   }
 
-  setAddingNote=()=>{
+  setAddingNote = () => {
     this.setState({
       addingNote: !this.state.addingNote
     })
   }
 
-  renderNoteForm=()=>{
+  renderNoteForm = () => {
     return <Form style={{ backgroundColor: "white", border: "2px solid #d2d2d2", borderRadius: "10px", padding: "10px", width:"50%", margin:"0 auto"}}onSubmit={this.handleAddNoteClick}>
         <Form.Field>
           <label>Add Note:</label>
           <input placeholder="...note content"
           value={this.state.addNoteContent}
-          onChange={e=>this.setState({addNoteContent:e.target.value})}/>
+          onChange={e => this.setState({addNoteContent:e.target.value})}/>
         </Form.Field>
         <Button sytle={{margin: "10px"}}type='submit'>Submit</Button>
         <Button onClick={this.cancelAdd}sytle={{margin: "10px"}}>Cancel</Button>
@@ -215,15 +221,19 @@ export default class RecipeCardBig extends Component {
 
             <Grid.Row centered>
               <div style={{margin: "0 auto", padding:"10px", border: "1px solid darkgrey", borderRadius:"10px"}}>
-              {this.state.timerVisible ?  <Timer/>
-               : null }
-                <Button onClick={()=>{this.setState({timerVisible: !this.state.timerVisible})}}attached="bottom">Toggle Timer</Button>
+                {
+                  this.state.timerVisible ? <Timer/> : null
+                }
+                <Button
+                  onClick={() => {this.setState({timerVisible: !this.state.timerVisible})}}
+                  attached="bottom"
+                >Toggle Timer</Button>
               </div>
             </Grid.Row>
 
             <hr width="50%"/>
             {
-              this.props.userData.favorites.includes(id) ? (
+              this.favRecipeIds().includes(id) ? (
                 <Fragment>
                   <Grid.Row centered>
                     <Grid.Column width={4}>
@@ -258,8 +268,6 @@ export default class RecipeCardBig extends Component {
                     )
                   }
 
-
-
                   <hr width="50%"/>
                 </Fragment>
               ) : (
@@ -276,7 +284,7 @@ export default class RecipeCardBig extends Component {
             </Grid.Row>
           </Grid>
         </Card>
-        </div>
+      </div>
     )
   }
 }

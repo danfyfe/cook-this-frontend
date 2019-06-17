@@ -8,10 +8,9 @@ import HomePage from './components/HomePage'
 import RecipesPage from './components/RecipesPage'
 
 export default class App extends React.Component {
-
-
   render() {
     console.log("App props", this.props)
+    console.log("App state", this.state)
 
     return (
       <div className="App">
