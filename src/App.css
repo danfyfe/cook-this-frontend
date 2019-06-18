@@ -12,79 +12,17 @@ html {
  height: 100%;
 }
 
-
 body{
   background-color: transparent;
 }
 
-body {
-  background-color: transparent;
-}
-
-.App{
+.App {
   position: relative;
-}
-
-.welcome-div {
-  margin: 50% auto;
-  width: 50%;
-  border: 3px solid black;
-  border-style: solid;
-  border-radius: 10px;
-  border-color: black;
-  background-color: #B83329;
-  padding: 10px;
-  /* height: 800px;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  background-attachment: fixed;
-  position: relative; */
-}
-
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.cook-this-main{
-  font-family: 'Lobster Two', cursive;
-  margin: 0 auto;
-  width: 100px;
-  background-color: white;
-  border-style: solid;
-  border-radius: 10px;
-  border-color: black;
 }
 
 .vsc-initialized {
   all: unset;
 }
-
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-/* .top {
-  border-radius: 0 !important;
-  border-bottom: black solid;
-  background-color: #B83329 !important;
-  height: 8vh;
-  width: 100%;
-
-  position: fixed;
-  top: 0;
-  left:0;
-} */
 
 .logo{
   margin: 10px !important;
@@ -107,39 +45,8 @@ body {
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
-
-
-
-#clockdiv{
-   font-family: sans-serif;
-   color: #fff;
-   display: inline-block;
-   font-weight: 100;
-   text-align: center;
-   font-size: 30px;
-}
-#clockdiv > div{
-   padding: 10px;
-   border-radius: 3px;
-   background: #00BF96;
-   display: inline-block;
-}
-#clockdiv div > span{
-   padding: 15px;
-   border-radius: 3px;
-   background: #00816A;
-   display: inline-block;
-}
-smalltext{
-   padding-top: 5px;
-   font-size: 16px;
-}
-
-
-
 .food-done{
   font-family: 'Lobster Two', cursive;
-
 }
 
 
