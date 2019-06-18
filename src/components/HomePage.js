@@ -33,11 +33,6 @@ export default class HomePage extends Component {
   }
 
   render() {
-    // if (localStorage.token) {
-    //   // this.props.history.push("/recipes")
-    //
-    // }
-
     return ( localStorage.token ? (
       <Redirect to={"/recipes"} />
     ) : (
