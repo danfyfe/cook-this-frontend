@@ -5,7 +5,6 @@ import { Button, Card, Grid } from 'semantic-ui-react'
 export default class Note extends Component {
   render(){
     return(
-      <Grid.Column width={4}>
         <Card id={this.props.note.id} style={{margin:"20px"}}>
           <Card.Header>
             <h4 style={{padding:"10px"}}>Note: </h4>
@@ -30,7 +29,6 @@ export default class Note extends Component {
             </Grid.Column>
           </Grid.Row>
         </Card>
-      </Grid.Column>
     )
   }
 }
