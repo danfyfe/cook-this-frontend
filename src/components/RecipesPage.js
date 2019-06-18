@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Form, Button, Card, Segment, Image, Grid } from 'semantic-ui-react'
+import { Form, Button, Card, Segment, Image, Grid, Checkbox } from 'semantic-ui-react'
 import RecipeCard from './RecipeCard.js'
 import RecipeCardBig from './RecipeCardBig.js'
 
@@ -8,7 +8,8 @@ export default class RecipesPage extends Component {
     recipes: [],
     selectedRecipe: null, // RECIPE THAT IS SHOW BIG W/ DETAILS
     searchUrl: "",
-    userData: {}
+    userData: {},
+    favsOnly: false
   }
 
   componentDidMount() {
@@ -67,24 +68,57 @@ export default class RecipesPage extends Component {
   }
 
   renderRecipeCards = () => {
-    return this.state.recipes.map(recipe => {
-      const isFavorite = () => {
-        if (this.favRecipeIds().length > 0) {
-          return this.favRecipeIds().includes(recipe.id)
-        } else {
-          return false
-        }
-      }
 
-      return (
-        <RecipeCard
+    if (this.state.favsOnly) {
+      // console.log("Favs", this.state.userData.favorites)
+
+      return this.state.recipes.map(recipe => {
+
+        const isFavorite = () => {
+          if (this.favRecipeIds().length > 0) {
+            return this.favRecipeIds().includes(recipe.id)
+          } else {
+            return false
+          }
+        }
+
+        if (this.favRecipeIds().includes(recipe.id)) {
+          return (
+              <RecipeCard
+              isFavorite={isFavorite()}
+              key={recipe.id}
+              recipe={recipe}
+              userData={this.state.userData}
+              handleClick={this.selectRecipe}/>
+            )
+        }
+      })
+
+
+    }else {
+      return this.state.recipes.map(recipe => {
+        const isFavorite = () => {
+          if (this.favRecipeIds().length > 0) {
+            return this.favRecipeIds().includes(recipe.id)
+          } else {
+            return false
+          }
+        }
+
+        return (
+          <RecipeCard
           isFavorite={isFavorite()}
           key={recipe.id}
           recipe={recipe}
           userData={this.state.userData}
           handleClick={this.selectRecipe}/>
-      )
-    })
+        )
+      })
+    }
+  }
+
+  renderFavsOnly = () => {
+    console.log("Whatver")
   }
 
   handleFavBtnClick = e => {
@@ -150,6 +184,20 @@ export default class RecipesPage extends Component {
             </Grid.Column>
           </Grid>
         </Segment>
+
+
+        <Segment style={{margin: "20px auto",width:"50%"}}>
+          <Grid>
+            <Grid.Column floated="left">
+              <Checkbox onChange={()=>this.setState({favsOnly:!this.state.favsOnly})}toggle style={{}} />
+            </Grid.Column>
+            <Grid.Column floated="right" width={5}>
+              <h4 style={{textAlign:"center"}}>Favorites Only</h4>
+            </Grid.Column>
+          </Grid>
+        </Segment>
+
+
         {
           this.state.selectedRecipe ? (
             <RecipeCardBig
