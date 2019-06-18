@@ -1,5 +1,8 @@
-
 @import url('https://fonts.googleapis.com/css?family=Baloo|Bangers|Fredericka+the+Great|Lobster+Two:400i&display=swap');
+
+* {
+  box-sizing: border-box;
+}
 
 html {
   background-image: url('https://i.imgur.com/CNPl1AP.jpg');
@@ -138,5 +141,3 @@ smalltext{
   font-family: 'Lobster Two', cursive;
 
 }
-
-

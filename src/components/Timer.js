@@ -1,6 +1,6 @@
 import React from 'react'
 import Countdown from 'react-countdown-now';
-import { Button, Form } from 'semantic-ui-react'
+import { Card, Button, Form } from 'semantic-ui-react'
 import '../App.css';
 // const TimeFormat = require('hh-mm-ss')
 
@@ -51,17 +51,15 @@ export default class Timer extends React.Component{
   }
 
   render() {
-    console.log(this.state)
     return(
-      <div>
-        <Countdown onComplete={this.foodTimer} date={Date.now() + this.state.totalMS}>
-        </Countdown>
+      <Card>
+        <Countdown onComplete={this.foodTimer} date={Date.now() + this.state.totalMS} />
 
         <hr width="75%"/>
 
         {this.state.timerDone ? this.foodDone() : null}
 
-        <Form style={{marginRight: "30px"}}>
+        <Form>
           <Form.Field>
             <input type="text" name="hours" placeholder="hours"
             onChange={this.setTimes}/>
@@ -82,7 +80,7 @@ export default class Timer extends React.Component{
         <Button onClick={this.setMS}>Start Timer</Button>
         <Button onClick={this.resetTimer}>Reset Timer</Button>
         <hr width="75%"/>
-      </div>
+      </Card>
     )
   }
 }

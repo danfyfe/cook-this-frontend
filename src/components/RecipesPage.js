@@ -69,23 +69,19 @@ export default class RecipesPage extends Component {
 
   renderRecipeCards = () => {
 
-    if (this.state.favsOnly) {
-      // console.log("Favs", this.state.userData.favorites)
 
+    if (this.state.favsOnly) {
+ 
       return this.state.recipes.map(recipe => {
 
-        const isFavorite = () => {
-          if (this.favRecipeIds().length > 0) {
-            return this.favRecipeIds().includes(recipe.id)
-          } else {
-            return false
-          }
-        }
+         const isFavorite = (
+        this.favRecipeIds().length > 0 ? this.favRecipeIds().includes(recipe.id) : false
+      )
 
         if (this.favRecipeIds().includes(recipe.id)) {
           return (
               <RecipeCard
-              isFavorite={isFavorite()}
+              isFavorite={isFavorite}
               key={recipe.id}
               recipe={recipe}
               userData={this.state.userData}
@@ -94,20 +90,15 @@ export default class RecipesPage extends Component {
         }
       })
 
-
     }else {
       return this.state.recipes.map(recipe => {
-        const isFavorite = () => {
-          if (this.favRecipeIds().length > 0) {
-            return this.favRecipeIds().includes(recipe.id)
-          } else {
-            return false
-          }
-        }
+         const isFavorite = (
+        this.favRecipeIds().length > 0 ? this.favRecipeIds().includes(recipe.id) : false
+      )
 
         return (
           <RecipeCard
-          isFavorite={isFavorite()}
+          isFavorite={isFavorite}
           key={recipe.id}
           recipe={recipe}
           userData={this.state.userData}
@@ -115,10 +106,6 @@ export default class RecipesPage extends Component {
         )
       })
     }
-  }
-
-  renderFavsOnly = () => {
-    console.log("Whatver")
   }
 
   handleFavBtnClick = e => {
@@ -166,10 +153,7 @@ export default class RecipesPage extends Component {
       this.props.history.push("/")
     }
 
-
-
     return (
-
       <div style={{margin: "auto", width: "90%"}}>
         <Segment style={{width:"100%"}}>
           <Grid>
@@ -216,7 +200,7 @@ export default class RecipesPage extends Component {
               <br/>
 
               <Segment>
-                <Form style={{padding: "10px", marginRight: "30px"}} onSubmit={this.createRecipe}>
+                <Form style={{padding: "10px"}} onSubmit={this.createRecipe}>
                   Add New Recipe
                   <br/>
                   <Form.Field>
