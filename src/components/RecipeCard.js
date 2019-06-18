@@ -23,7 +23,8 @@ export default class RecipesCard extends Component {
         </Card.Content>
 
         <Card.Content style={{}}>
-          <img className="recipe-image"src={image} alt={title} height="100px" width="100px"/>
+          <img style={{marginBottom:"10px"}} className="recipe-image"src={image} alt={title} height="100px" width="100px"/>
+
           <p>{cookTime ? cookTime : "Unknown Cook Time"}</p>
           <p>{description.slice(0, 100) + "..."}</p>
         </Card.Content>

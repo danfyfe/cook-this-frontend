@@ -8,11 +8,6 @@ export default class HomePage extends Component {
     password: ""
   }
 
-  componentDidMount() {
-    if (localStorage.token) {
-      this.props.history.push("/recipes")
-    }
-  }
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value })
@@ -33,7 +28,7 @@ export default class HomePage extends Component {
   }
 
   render() {
-    return ( localStorage.token ? (
+    return ( localStorage.token && localStorage.token !== "undefined" ? (
       <Redirect to={"/recipes"} />
     ) : (
         <Segment placeholder style={{margin: "100px 200px"}}>
