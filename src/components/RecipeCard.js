@@ -11,7 +11,11 @@ export default class RecipesCard extends Component {
 
     return (
       <Card
-        id={id} style={{margin: "7px", textAlign: "center", border: "2px solid #870900", boxShadow: "none"}}
+        id={id}
+        style={{
+          margin: "7px", textAlign: "center", border: "2px solid #870900", boxShadow: "none",
+          ...this.props.style
+        }}
         onClick={this.props.handleClick}
       >
         <Card.Content>

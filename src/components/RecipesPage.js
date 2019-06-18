@@ -68,44 +68,35 @@ export default class RecipesPage extends Component {
   }
 
   renderRecipeCards = () => {
-
-
-    if (this.state.favsOnly) {
- 
-      return this.state.recipes.map(recipe => {
-
-         const isFavorite = (
+    return this.state.recipes.map(recipe => {
+      const isFavorite = (
         this.favRecipeIds().length > 0 ? this.favRecipeIds().includes(recipe.id) : false
       )
 
-        if (this.favRecipeIds().includes(recipe.id)) {
-          return (
-              <RecipeCard
-              isFavorite={isFavorite}
-              key={recipe.id}
-              recipe={recipe}
-              userData={this.state.userData}
-              handleClick={this.selectRecipe}/>
-            )
-        }
-      })
-
-    }else {
-      return this.state.recipes.map(recipe => {
-         const isFavorite = (
-        this.favRecipeIds().length > 0 ? this.favRecipeIds().includes(recipe.id) : false
-      )
+      if (this.state.favsOnly) {
+        const style = isFavorite ? {display: ""} : {display: "none"}
 
         return (
           <RecipeCard
-          isFavorite={isFavorite}
-          key={recipe.id}
-          recipe={recipe}
-          userData={this.state.userData}
-          handleClick={this.selectRecipe}/>
+            style={style}
+            isFavorite={isFavorite}
+            key={recipe.id}
+            recipe={recipe}
+            userData={this.state.userData}
+            handleClick={this.selectRecipe}/>
         )
-      })
-    }
+      } else {
+        return (
+          <RecipeCard
+            style={{}}
+            isFavorite={isFavorite}
+            key={recipe.id}
+            recipe={recipe}
+            userData={this.state.userData}
+            handleClick={this.selectRecipe}/>
+        )
+      }
+    })
   }
 
   handleFavBtnClick = e => {

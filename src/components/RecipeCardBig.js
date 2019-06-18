@@ -205,7 +205,9 @@ export default class RecipeCardBig extends Component {
           </Grid.Row>
 
           <hr width="70%"/>
+
           {
+            /* CAN ONLY ADD NOTES IF RECIPE IN FAVS */
             this.favRecipeIds().includes(id) ? (
               <Fragment>
                 <Grid.Row centered>
