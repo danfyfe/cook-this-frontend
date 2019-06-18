@@ -8,7 +8,9 @@ export default class Timer extends React.Component{
 
     this.state = {
       time: props.startTime,
-      isTimerOn: true
+      isTimerOn: true,
+      color: "",
+      className: ""
     }
   }
 
@@ -18,13 +20,19 @@ export default class Timer extends React.Component{
 
   render() {
     return(
-      <Card style={{minHeight: "150px"}}>
+      <Card style={{minHeight: "150px", backgroundColor: this.state.color}} className={this.state.className}>
         {/* <Button size="mini" compact="true" style={{color: "red"}}>X</Button> */}
 
         <div style={{position: "relative", top: "40%", fontSize: "30px", transform: "translateY(-50%)"}}>
           {this.state.timerDone ? this.foodDone() : null}
 
+          {this.props.name}
+
+          <br/>
+
           {TimeFormat.fromS(this.state.time, 'hh:mm:ss')}
+
+          <br/>
 
           {
             this.state.isTimerOn ? (
@@ -49,6 +57,7 @@ export default class Timer extends React.Component{
     } else {
       const audio = new Audio('./air-horn.mp3');
       audio.play();
+      this.setState({color: "#" + Math.floor(Math.random() * 16777215).toString(16)})
     }
   }
 

@@ -5,6 +5,7 @@ import Timer from './Timer.js'
 export default class TimersContainer extends Component {
   state = {
     timers: [],
+    name: "",
     hours: "",
     minutes: "",
     seconds: ""
@@ -15,7 +16,8 @@ export default class TimersContainer extends Component {
       <Timer
         id={timer.id}
         key={timer.id}
-        startTime={timer.startTime} />
+        startTime={timer.startTime}
+        name={timer.name} />
     )
   })
 
@@ -31,11 +33,12 @@ export default class TimersContainer extends Component {
             (parseInt(this.state.hours) ? parseInt(this.state.hours) : 0) * 3600 +
             (parseInt(this.state.minutes) ? parseInt(this.state.minutes) : 0) * 60 +
             (parseInt(this.state.seconds) ? parseInt(this.state.seconds) : 0)
-          )
+          ),
+          name: this.state.name
         }
       ]
     },
-    () => this.setState({hours: "", minutes: "", seconds: ""}))
+    () => this.setState({hours: "", minutes: "", seconds: "", name: ""}))
   }
 
   render() {
@@ -45,6 +48,15 @@ export default class TimersContainer extends Component {
         <Card.Group centered itemsPerRow={4} style={{margin: "auto"}}>
           <Card style={{padding: "5px"}}>
             <Form onSubmit={this.handleAddTimer}>
+              <Form.Field>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="timer name"
+                  onChange={this.handleChange}
+                  value={this.state.name} />
+              </Form.Field>
+
               <Form.Field>
                 <input
                   type="number"
