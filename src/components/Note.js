@@ -11,7 +11,7 @@ export default class Note extends Component {
             <h4 style={{padding:"10px"}}>Note: </h4>
           </Card.Header>
 
-          <Card.Content>
+          <Card.Content style={{wordWrap: "break-word"}}>
             {this.props.note.content}
           </Card.Content>
 

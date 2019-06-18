@@ -35,7 +35,6 @@ export default class RecipesPage extends Component {
 
   createRecipe = () => {
     // SEND URL TO recipes#create
-    this.setState({searchUrl: ""})
     fetch("http://localhost:3000/recipes", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -43,7 +42,10 @@ export default class RecipesPage extends Component {
     })
       .then(r => r.json())
       .then(recipe => {
-        this.setState({recipes: [...this.state.recipes, recipe]})
+        this.setState({
+          recipes: [...this.state.recipes, recipe],
+          searchUrl: ""
+        })
       })
   }
 
@@ -146,6 +148,34 @@ export default class RecipesPage extends Component {
 
     return (
       <div style={{margin: "auto", width: "90%"}}>
+        <Segment style={{width:"100%"}}>
+          <Grid>
+            <Grid.Column floated="left" width={1}>
+              <Image alt="user-icon" src={this.state.userData.image}/>
+            </Grid.Column>
+
+            <Grid.Column centered="true" width={5}>
+              <h3 style={{marginTop:'10px', textAlign:"center"}}>Welcome, {this.state.userData.username}!</h3>
+            </Grid.Column>
+
+            <Grid.Column floated="right" width={1}>
+              <Image alt="user-icon" src={this.state.userData.image}/>
+            </Grid.Column>
+          </Grid>
+        </Segment>
+
+
+        <Segment style={{margin: "20px auto",width:"50%"}}>
+          <Grid>
+            <Grid.Column floated="left">
+              <Checkbox onChange={()=>this.setState({favsOnly:!this.state.favsOnly})}toggle style={{}} />
+            </Grid.Column>
+            <Grid.Column floated="right" width={5}>
+              <h4 style={{textAlign:"center"}}>Favorites Only</h4>
+            </Grid.Column>
+          </Grid>
+        </Segment>
+
         {
           this.state.selectedRecipe ? (
             <RecipeCardBig

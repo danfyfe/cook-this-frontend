@@ -1,86 +1,64 @@
 import React from 'react'
-import Countdown from 'react-countdown-now';
-import { Card, Button, Form } from 'semantic-ui-react'
-import '../App.css';
-// const TimeFormat = require('hh-mm-ss')
+import { Card, Button } from 'semantic-ui-react'
+const TimeFormat = require('hh-mm-ss')
 
 export default class Timer extends React.Component{
-  state = {
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-    totalMS: 0,
-    timerDone: false
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      time: props.startTime,
+      isTimerOn: true
+    }
   }
 
-  timeToMS = () => {
-    let hoursToSecs = parseInt(this.state.hours) * 3600;
-    let minsToSecs = parseInt(this.state.minutes) * 60;
-    let totalSecs = hoursToSecs + minsToSecs + parseInt(this.state.seconds)
-    let totalMS = totalSecs * 1000
-    return totalMS
+  componentDidMount() {
+    this.interval = setInterval(this.countdown, 1000)
   }
 
-  setTimes = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
+  render() {
+    return(
+      <Card style={{minHeight: "150px"}}>
+        {/* <Button size="mini" compact="true" style={{color: "red"}}>X</Button> */}
 
-  setMS = event => {
-    event.preventDefault()
-    this.setState({
-      totalMS: this.timeToMS()
-    })
-  }
+        <div style={{position: "relative", top: "40%", fontSize: "30px", transform: "translateY(-50%)"}}>
+          {this.state.timerDone ? this.foodDone() : null}
 
-  resetTimer = () => {
-    this.setState({
-      timerDone: false
-    })
-  }
+          {TimeFormat.fromS(this.state.time, 'hh:mm:ss')}
 
-  foodTimer = () => {
-    this.setState({
-      timerDone: true
-    })
+          {
+            this.state.isTimerOn ? (
+              <Button negative onClick={this.turnTimerOnOff}>Stop Timer</Button>
+            ) : (
+              <Button positive onClick={this.turnTimerOnOff}>Start Timer</Button>
+            )
+          }
+        </div>
+
+      </Card>
+    )
   }
 
   foodDone = () => {
     return <h1 className="food-done">The Food Is Done, Probably!</h1>
   }
 
-  render() {
-    return(
-      <Card>
-        <Countdown onComplete={this.foodTimer} date={Date.now() + this.state.totalMS} />
+  countdown = () => {
+    if (this.state.time > 0) {
+      this.setState({time: this.state.time - 1})
+    } else {
+      const audio = new Audio('./air-horn.mp3');
+      audio.play();
+    }
+  }
 
-        <hr width="75%"/>
+  turnTimerOnOff = () => {
+    if (this.state.isTimerOn) {
+      clearInterval(this.interval)
+    } else {
+      this.interval = setInterval(this.countdown, 1000)
+    }
 
-        {this.state.timerDone ? this.foodDone() : null}
-
-        <Form>
-          <Form.Field>
-            <input type="text" name="hours" placeholder="hours"
-            onChange={this.setTimes}/>
-          </Form.Field>
-
-          <Form.Field>
-            <input type="text" name="minutes" placeholder="mins"
-            onChange={this.setTimes}/>
-          </Form.Field>
-
-          <Form.Field>
-            <input type="text" name="seconds" placeholder="secs"onChange={this.setTimes}/>
-          </Form.Field>
-        </Form>
-
-        <hr width="75%"/>
-
-        <Button onClick={this.setMS}>Start Timer</Button>
-        <Button onClick={this.resetTimer}>Reset Timer</Button>
-        <hr width="75%"/>
-      </Card>
-    )
+    this.setState({isTimerOn: !this.state.isTimerOn})
   }
 }

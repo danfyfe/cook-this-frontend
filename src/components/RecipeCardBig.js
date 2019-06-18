@@ -250,7 +250,11 @@ export default class RecipeCardBig extends Component {
           <hr width="70%"/>
 
           <Grid.Row>
-            <Grid.Column centered>
+            <Grid.Column centered="true">
+              <div centered style={{color: "red", fontSize: "16px"}}>
+                Going back will delete all timers!
+              </div>
+
               <Button negative
                 style={{margin: "20px"}}
                 onClick={this.props.clearSelectedRecipe}
