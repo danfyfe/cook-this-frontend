@@ -140,39 +140,12 @@ export default class RecipesPage extends Component {
 
   render() {
     console.log("RecipesPage state", this.state);
-    if (!localStorage.token) {
+    if (!localStorage.token || localStorage.token === "undefined") {
       this.props.history.push("/")
     }
 
     return (
       <div style={{margin: "auto", width: "90%"}}>
-        <Segment style={{width:"100%"}}>
-          <Grid>
-            <Grid.Column floated="left" width={1}>
-              <Image alt="user-icon" src={this.state.userData.image}/>
-            </Grid.Column>
-            <Grid.Column floated="center" width={5}>
-              <h3 style={{marginTop:'10px', textAlign:"center"}}>Welcome, {this.state.userData.username}!</h3>
-            </Grid.Column>
-            <Grid.Column floated="right" width={1}>
-              <Image alt="user-icon" src={this.state.userData.image}/>
-            </Grid.Column>
-          </Grid>
-        </Segment>
-
-
-        <Segment style={{margin: "20px auto",width:"50%"}}>
-          <Grid>
-            <Grid.Column floated="left">
-              <Checkbox onChange={()=>this.setState({favsOnly:!this.state.favsOnly})}toggle style={{}} />
-            </Grid.Column>
-            <Grid.Column floated="right" width={5}>
-              <h4 style={{textAlign:"center"}}>Favorites Only</h4>
-            </Grid.Column>
-          </Grid>
-        </Segment>
-
-
         {
           this.state.selectedRecipe ? (
             <RecipeCardBig
@@ -183,6 +156,37 @@ export default class RecipesPage extends Component {
               clearSelectedRecipe={this.clearSelectedRecipe} />
           ) : (
             <Fragment>
+
+              <Segment style={{width:"100%"}}>
+                <Grid>
+                  <Grid.Column floated="left" width={1}>
+                    <Image alt="user-icon" src={this.state.userData.image}/>
+                  </Grid.Column>
+                  <Grid.Column floated="center" width={5}>
+                    <h3 style={{marginTop:'10px', textAlign:"center"}}>Welcome, {this.state.userData.username}!</h3>
+                  </Grid.Column>
+                  <Grid.Column floated="right" width={1}>
+                    <Image alt="user-icon" src={this.state.userData.image}/>
+                  </Grid.Column>
+                </Grid>
+              </Segment>
+
+              <Segment style={{margin: "20px auto",width:"50%"}}>
+                <Grid>
+                  <Grid.Column floated="left">
+                  {this.state.favsOnly ?
+
+                    <Checkbox onChange={()=>this.setState({favsOnly:!this.state.favsOnly})}toggle defaultChecked/> :
+
+                    <Checkbox onChange={()=>this.setState({favsOnly:!this.state.favsOnly})}toggle/>
+
+                  }
+                  </Grid.Column>
+                  <Grid.Column floated="right" width={5}>
+                    <h4 style={{textAlign:"center"}}>Favorites Only</h4>
+                  </Grid.Column>
+                </Grid>
+              </Segment>
 
               <Card.Group centered itemsPerRow={4} style={{margin: "auto"}}>
                 {this.renderRecipeCards()}

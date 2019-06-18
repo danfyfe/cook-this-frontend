@@ -161,8 +161,8 @@ export default class RecipeCardBig extends Component {
     return (
       <Card style={{height: "100%", width: "100%", textAlign: "center"}}>
         <Grid>
-          <Grid.Row style={{margin:"10px"}} centered>
-            <h1>{title}</h1>
+          <Grid.Row style={{}} centered>
+            <h1 style={{marginTop: "20px"}}>{title}</h1>
           </Grid.Row>
 
           <Grid.Row centered>
@@ -175,14 +175,14 @@ export default class RecipeCardBig extends Component {
             <Grid.Column width={3} style={{textAlign: "center"}}>{totalTime}</Grid.Column>
           </Grid.Row>
 
-          <hr width="70%"/>
-
-          <Grid.Row centered stye={{}}>
+          <Grid.Row centered >
             <Grid.Column width={10}>
-              {description}
+              <p style={{textAlign:"center"}}>{description}</p>
             </Grid.Column>
 
           </Grid.Row>
+
+          <hr width="70%"/>
 
           <Grid.Row centered>
             <Grid.Column width={4}>
