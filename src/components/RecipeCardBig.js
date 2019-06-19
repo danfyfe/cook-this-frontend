@@ -159,7 +159,7 @@ export default class RecipeCardBig extends Component {
     const { id, title, image, description, prep_time: prepTime, cook_time: cookTime, ready_in_time: totalTime, ingredients, steps } = this.props.recipe
 
     return (
-      <Card style={{height: "100%", width: "100%", textAlign: "center"}}>
+      <Card style={{height: "100%", width: "100%", textAlign: "center", border: "2px solid #870900", boxShadow: "none"}}>
         <Grid>
           <Grid.Row style={{}} centered>
             <h1 style={{marginTop: "20px"}}>{title}</h1>

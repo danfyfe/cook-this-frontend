@@ -29,8 +29,11 @@ export default class SignupPage extends Component {
 
   render() {
     return (
-      <Segment style={{margin: "100px 200px"}}>
-        Hey you! Sign up!
+      <Segment centered style={{margin: "100px auto", width: "500px", border: "2px solid #870900", boxShadow: "none"}}>
+        <h1 style={{textAlign: "cetner"}}>Hey you! Sign up!</h1>
+
+
+
         <Form onSubmit={this.handleSubmit} style={{margin: "0 30px 0 0"}}>
           <Form.Field>
             <label>Username</label>

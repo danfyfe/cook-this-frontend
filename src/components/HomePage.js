@@ -31,9 +31,9 @@ export default class HomePage extends Component {
     return ( localStorage.token && localStorage.token !== "undefined" ? (
       <Redirect to={"/recipes"} />
     ) : (
-        <Segment placeholder style={{margin: "100px 200px"}}>
+        <Segment placeholder style={{margin: "100px 200px", border: "2px solid #870900", boxShadow: "none"}}>
           <Grid columns={2} relaxed='very' stackable>
-            <Grid.Column width={6}>
+            <Grid.Column>
               <Form onSubmit={this.handleSubmit}>
                 <Form.Input icon='user' iconPosition='left' label='Username' placeholder='Username'
                   name='username' onChange={this.handleChange} />

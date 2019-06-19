@@ -163,7 +163,7 @@ export default class RecipesPage extends Component {
           ) : (
             <Fragment>
 
-              <Segment style={{width:"100%"}}>
+              <Segment style={{width:"100%", border: "2px solid #870900", boxShadow: "none"}}>
                 <Grid>
                   <Grid.Column floated="left" width={1}>
                     <Image alt="user-icon" src={this.state.userData.image}/>
@@ -177,7 +177,7 @@ export default class RecipesPage extends Component {
                 </Grid>
               </Segment>
 
-              <Segment style={{margin: "20px auto",width:"50%"}}>
+              <Segment style={{margin: "20px auto", width:"50%", border: "2px solid #870900", boxShadow: "none"}}>
                 <Grid>
                   <Grid.Column floated="left">
                   {this.state.favsOnly ?
@@ -200,7 +200,7 @@ export default class RecipesPage extends Component {
 
               <br/>
 
-              <Segment>
+              <Segment style={{border: "2px solid #870900", boxShadow: "none"}}>
                 <Form style={{padding: "10px"}} onSubmit={this.createRecipe}>
                   Add New Recipe
                   <br/>
