@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Button } from 'semantic-ui-react'
+import { Card, Button, Image } from 'semantic-ui-react'
 const TimeFormat = require('hh-mm-ss')
 
 export default class Timer extends React.Component{
@@ -23,22 +23,32 @@ export default class Timer extends React.Component{
       <Card style={{minHeight: "150px", backgroundColor: this.state.color}} className={this.state.className}>
         {/* <Button size="mini" compact="true" style={{color: "red"}}>X</Button> */}
 
-        <div style={{position: "relative", top: "40%", fontSize: "30px", transform: "translateY(-50%)"}}>
+        <div style={{position: "relative", top: "50%", fontSize: "30px", transform: "translateY(-50%)"}}>
           {this.state.timerDone ? this.foodDone() : null}
 
-          {this.props.name}
+
+            {this.props.name}
 
           <br/>
+
+          <hr width={"80%"}/>
 
           {TimeFormat.fromS(this.state.time, 'hh:mm:ss')}
 
           <br/>
+          <br/>
 
           {
             this.state.isTimerOn ? (
-              <Button negative onClick={this.turnTimerOnOff}>Stop Timer</Button>
+              <React.Fragment >
+                <Button negative onClick={this.turnTimerOnOff}>Stop Timer</Button>
+                <Image centered className="fork-and-knife" style={{marginTop: "20px",width: "50px", height:"50px"}} src="https://i.imgur.com/B3Vr3J4.png"/>
+              </React.Fragment>
             ) : (
-              <Button positive onClick={this.turnTimerOnOff}>Start Timer</Button>
+              <React.Fragment>
+                <Button positive onClick={this.turnTimerOnOff}>Start Timer</Button>
+                <Image centered style={{marginTop: "20px",width: "50px", height:"50px"}} src="https://i.imgur.com/4CHZNhc.png"/>
+              </React.Fragment>
             )
           }
         </div>
