@@ -105,18 +105,21 @@ export default class RecipesPage extends Component {
     const recipeId = parseInt(e.target.closest(".card").id, 10)
 
     if (this.favRecipeIds().includes(recipeId)) {
-      const userId = parseInt(this.state.userData.id, 10)
+      const confirmDelete = window.confirm("Are you sure you want to unfavorite this recipe? Doing so will delete any notes on it.")
+      if (confirmDelete) {
+        const userId = parseInt(this.state.userData.id, 10)
 
-      fetch(`http://localhost:3000/favorites/${userId}/${recipeId}`, { method: "DELETE" })
-        .then(r => {
-            const favsCopy = this.state.userData.favorites.filter(fav => fav.recipe_id !== recipeId)
+        fetch(`http://localhost:3000/favorites/${userId}/${recipeId}`, { method: "DELETE" })
+          .then(r => {
+              const favsCopy = this.state.userData.favorites.filter(fav => fav.recipe_id !== recipeId)
 
-            this.setState({userData: {
-              ...this.state.userData,
-              favorites: favsCopy
-            }})
-          }
-        )
+              this.setState({userData: {
+                ...this.state.userData,
+                favorites: favsCopy
+              }})
+            }
+          )
+      }
     } else {
       fetch("http://localhost:3000/favorites", {
         method: "POST",
@@ -178,7 +181,7 @@ export default class RecipesPage extends Component {
                 <Grid>
                   <Grid.Column floated="left">
                   {this.state.favsOnly ?
-                    
+
                     <Checkbox onChange={()=>this.setState({favsOnly:!this.state.favsOnly})}toggle defaultChecked/> :
 
                     <Checkbox onChange={()=>this.setState({favsOnly:!this.state.favsOnly})}toggle/>

@@ -18,6 +18,10 @@ export default class Timer extends React.Component{
     this.interval = setInterval(this.countdown, 1000)
   }
 
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
+
   render() {
     return(
       <Card style={{minHeight: "150px", backgroundColor: this.state.color}} className={this.state.className}>
@@ -55,8 +59,8 @@ export default class Timer extends React.Component{
     if (this.state.time > 0) {
       this.setState({time: this.state.time - 1})
     } else {
-      const audio = new Audio('./air-horn.mp3');
-      audio.play();
+      const audio = new Audio('./air-horn.mp3')
+      audio.play()
       this.setState({color: "#" + Math.floor(Math.random() * 16777215).toString(16)})
     }
   }
