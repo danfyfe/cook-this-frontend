@@ -19,6 +19,8 @@ export default class RecipeCardBig extends Component {
   favRecipeIds = () => this.props.userData.favorites.map(fav => fav.recipe_id)
 
   componentDidMount() {
+    window.scrollTo(0,0);
+
     const recipeId = parseInt(this.props.recipe.id)
 
     if (this.favRecipeIds().includes(recipeId)) {
