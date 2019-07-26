@@ -42,7 +42,7 @@ export default class TimersContainer extends Component {
   }
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <Segment style={{width: "90%", border: "none", boxShadow: "none"}}>
         <Card.Group centered itemsPerRow={4} style={{margin: "auto"}}>

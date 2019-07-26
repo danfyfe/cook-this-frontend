@@ -14,8 +14,8 @@ export default class App extends React.Component {
   setUserData = userData => this.setState({userData})
 
   render() {
-    console.log("App props", this.props)
-    console.log("App state", this.state)
+    // console.log("App props", this.props)
+    // console.log("App state", this.state)
 
     return (
       <div style={{marginBottom: "20px"}}className="App">
@@ -25,7 +25,7 @@ export default class App extends React.Component {
             <div className="title">Cook This!</div>
           </Menu.Item>
 
-          {
+          { 
             localStorage.token ? (
               <Menu.Item position="right" style={{alignItems: "center", marginLeft: "0px !important"}}>
                 <Button negative onClick={() => {

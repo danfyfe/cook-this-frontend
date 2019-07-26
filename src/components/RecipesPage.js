@@ -25,7 +25,7 @@ export default class RecipesPage extends Component {
   }
 
   updateUserDataNotes = (notes) => {
-    console.log("NOTES",notes)
+    // console.log("NOTES",notes)
     this.setState({
       userData: {...this.state.userData, notes:[...notes]}
     })
@@ -144,7 +144,7 @@ export default class RecipesPage extends Component {
   }
 
   render() {
-    console.log("RecipesPage state", this.state);
+    // console.log("RecipesPage state", this.state);
     if (!localStorage.token || localStorage.token === "undefined") {
       this.props.history.push("/")
     }
