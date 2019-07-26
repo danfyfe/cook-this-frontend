@@ -13,9 +13,9 @@ export default class RecipesPage extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/recipes").then(r => r.json()).then(recipes => this.setState({recipes}))
+    fetch("https://cookthis-api.herokuapp.com//recipes").then(r => r.json()).then(recipes => this.setState({recipes}))
 
-    fetch("http://localhost:3000/profile", {
+    fetch("https://cookthis-api.herokuapp.com//profile", {
       headers: { Authorization: localStorage.getItem("token") }
     }).then(r => r.json())
       .then(userData => {
@@ -35,7 +35,7 @@ export default class RecipesPage extends Component {
 
   createRecipe = () => {
     // SEND URL TO recipes#create
-    fetch("http://localhost:3000/recipes", {
+    fetch("https://cookthis-api.herokuapp.com//recipes", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ url: this.state.searchUrl })
@@ -109,7 +109,7 @@ export default class RecipesPage extends Component {
       if (confirmDelete) {
         const userId = parseInt(this.state.userData.id, 10)
 
-        fetch(`http://localhost:3000/favorites/${userId}/${recipeId}`, { method: "DELETE" })
+        fetch(`https://cookthis-api.herokuapp.com//favorites/${userId}/${recipeId}`, { method: "DELETE" })
           .then(r => {
               const favsCopy = this.state.userData.favorites.filter(fav => fav.recipe_id !== recipeId)
 
@@ -121,7 +121,7 @@ export default class RecipesPage extends Component {
           )
       }
     } else {
-      fetch("http://localhost:3000/favorites", {
+      fetch("https://cookthis-api.herokuapp.com//favorites", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
