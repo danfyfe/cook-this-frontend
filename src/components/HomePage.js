@@ -16,7 +16,11 @@ export default class HomePage extends Component {
   handleSubmit = () => {
     fetch("https://cookthis-api.herokuapp.com/login", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Accept: 'application/json',
+        'Access-Control-Allow-Origin': 'https://cookthis.herokuapp.com'
+      },
       body: JSON.stringify(this.state)
     }).then(r => r.json())
       .then(user => {
