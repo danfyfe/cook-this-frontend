@@ -13,7 +13,7 @@ export default class SignupPage extends Component {
   }
 
   handleSubmit = () => {
-    fetch("http://localhost:3000/signup", {
+    fetch("https://cookthis-api.herokuapp.com/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(this.state)

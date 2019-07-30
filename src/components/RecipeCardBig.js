@@ -32,7 +32,7 @@ export default class RecipeCardBig extends Component {
 
   handleAddNoteClick = () => {
     const recipeId = parseInt(this.props.recipe.id)
-    fetch("http://localhost:3000/notes", {
+    fetch("https://cookthis-api.herokuapp.com/notes", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -100,7 +100,7 @@ export default class RecipeCardBig extends Component {
 
   handleEditNoteClick = () => {
     let note = this.state.noteToEdit
-    fetch(`http://localhost:3000/notes/${note.id}`, {
+    fetch(`https://cookthis-api.herokuapp.com/notes/${note.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body:JSON.stringify({
@@ -121,7 +121,7 @@ export default class RecipeCardBig extends Component {
   }
 
   handleDeleteNote = noteId => {
-    fetch(`http://localhost:3000/notes/${noteId}`, {method:"DELETE"}).then(resp=>{
+    fetch(`https://cookthis-api.herokuapp.com/notes/${noteId}`, {method:"DELETE"}).then(resp=>{
       const notesCopy = this.state.notes.filter(note => note.id !== noteId)
 
       this.setState(

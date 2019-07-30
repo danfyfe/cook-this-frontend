@@ -1,6 +1,6 @@
 import React, { Component, } from 'react'
 import { Redirect } from 'react-router'
-import { Button, Segment, Grid, Form, Divider } from 'semantic-ui-react'
+import { Button, Segment, Grid, Form, Divider, Message } from 'semantic-ui-react'
 
 export default class HomePage extends Component {
   state = {
@@ -14,7 +14,7 @@ export default class HomePage extends Component {
   }
 
   handleSubmit = () => {
-    fetch("http://localhost:3000/login", {
+    fetch("https://cookthis-api.herokuapp.com/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(this.state)
@@ -31,6 +31,7 @@ export default class HomePage extends Component {
     return ( localStorage.token && localStorage.token !== "undefined" ? (
       <Redirect to={"/recipes"} />
     ) : (
+      <>
         <Segment placeholder style={{margin: "100px 200px", border: "2px solid #870900", boxShadow: "none"}}>
           <Grid columns={2} relaxed='very' stackable>
             <Grid.Column>
@@ -52,6 +53,7 @@ export default class HomePage extends Component {
 
           <Divider vertical>Or</Divider>
         </Segment>
+      </>
       )
     )
   }
